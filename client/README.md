@@ -2,7 +2,9 @@
 # Planning stage - 
 
 Framework: React.js
+
 Styling: Styled Components + Material UI
+
 State management: Redux
 
 
