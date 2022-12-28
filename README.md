@@ -8,4 +8,3 @@ Backend:
 
 
 ### :basketball: Vadim Gringauz :basketball:
-
