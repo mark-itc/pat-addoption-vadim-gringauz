@@ -28,5 +28,6 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Build React App
         run: npm install && npm run build
+        working-directory: client
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./build/ s3://pet-adoption-itc --delete
