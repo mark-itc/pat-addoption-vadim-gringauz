@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, Stack } from '@mui/material'
+import { Typography, Stack } from '@mui/material'
 
 function WelcomeMessage() {
   return (

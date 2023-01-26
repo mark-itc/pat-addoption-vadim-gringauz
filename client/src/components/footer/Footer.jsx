@@ -5,8 +5,6 @@ import {
   Box,
   Stack,
   Typography,
-  Divider,
-  Link,
   Button
 } from '@mui/material'
 import AppInfo from './AppInfo'

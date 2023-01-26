@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { Menu, MenuItem, Box, Fade } from '@mui/material'
 import { orange } from '@mui/material/colors'
@@ -19,7 +18,6 @@ const StyledMenu = styled(Menu)`
 `
 
 function TopMenuItem ({ page }) {
-  const activeClassName = 'active'
   const navigate = useNavigate()
 
   const [anchorEl, setAnchorEl] = useState(null)
