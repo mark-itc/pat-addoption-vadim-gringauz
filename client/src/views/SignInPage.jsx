@@ -1,18 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import { Container, Tab, Tabs, Box, Paper } from '@mui/material'
+import { createTheme } from '@mui/material/styles'
+import { Container, Tab, Box, Paper } from '@mui/material'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 import SignInForm from '../components/signin/SignInForm'
 import SignUpForm from '../components/signin/SignUpForm'
-
-const theme = createTheme({
-  typography: {
-    fontSize: 15,
-  }
-})
 
 function SignInPage() {
   const [value, setValue] = useState('1')

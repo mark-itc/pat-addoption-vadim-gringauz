@@ -1,6 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
-import { Stack, Paper, List, ListItem, ListItemButton } from '@mui/material'
+import { Stack } from '@mui/material'
 import TopMenuItem from './TopMenuItem'
 
 function TopMenu ({ pages }) {
