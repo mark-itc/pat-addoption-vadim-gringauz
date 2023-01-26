@@ -1,16 +1,14 @@
 import React from 'react'
-import { useState } from 'react'
+import { Outlet } from 'react-router-dom'
 import GoogleFontLoader from 'react-google-font'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import { Container } from '@mui/material'
+import { Box } from '@mui/material'
+import { blueGrey, orange } from '@mui/material/colors'
 import Navbar from './components/navbar/Navbar'
 import Footer from './components/footer/Footer'
-import PrivateRoute from './helpers/PrivateRoute'
-import { blueGrey, orange } from '@mui/material/colors'
 import appLogo from './assets/logo.png'
 export { appLogo }
-
 
 const theme = createTheme({
   palette: {
@@ -23,12 +21,10 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Sono',
     fontSize: 25
-  },
+  }
 })
 
-function App() {
-  const [openDiv, setOpenDiv] = useState(false)
-
+function App () {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -36,31 +32,39 @@ function App() {
         fonts={[
           {
             font: 'Sono',
-            weights: [200, 300, 400, 500, 600, 700, 800],
+            weights: [200, 300, 400, 500, 600, 700, 800]
           },
           {
             font: 'Rubik Marker Hatch',
-            weights: [400],
-          },
+            weights: [400]
+          }
         ]}
       />
-      <Navbar />
-      <PrivateRoute />
-      <Container>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste debitis, omnis fugit eius velit libero aperiam corporis a saepe unde maxime
-          quae laudantium nobis consequatur, magnam sunt ab quod explicabo.</div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste debitis, omnis fugit eius velit libero aperiam corporis a saepe unde maxime
-          quae laudantium nobis consequatur, magnam sunt ab quod explicabo.</div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste debitis, omnis fugit eius velit libero aperiam corporis a saepe unde maxime
-          quae laudantium nobis consequatur, magnam sunt ab quod explicabo.</div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste debitis, omnis fugit eius velit libero aperiam corporis a saepe unde maxime
-          quae laudantium nobis consequatur, magnam sunt ab quod explicabo.</div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste debitis, omnis fugit eius velit libero aperiam corporis a saepe unde maxime
-          quae laudantium nobis consequatur, magnam sunt ab quod explicabo.</div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste debitis, omnis fugit eius velit libero aperiam corporis a saepe unde maxime
-          quae laudantium nobis consequatur, magnam sunt ab quod explicabo.</div>
-      </Container>
-      <Footer />
+      <Box
+        sx={{
+          minHeight: '100vh',
+          minHeight: '100dvh',
+          display: 'grid',
+          gridTemplateRows: 'auto 1fr auto'
+        }}
+      >
+        <Navbar />
+        <Outlet />
+        <Footer />
+      </Box>
+      {/* <Grid
+        container
+        spacing={0}
+        sx={{
+          minHeight: '100vh',
+          minHeight: '100dvh'
+        }}
+      >
+        <Grid item>
+        </Grid>
+        <Grid item>
+        </Grid>
+      </Grid> */}
     </ThemeProvider>
   )
 }

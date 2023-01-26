@@ -1,14 +1,25 @@
 import React from 'react'
-import { Container, Box, Stack, Typography, Divider, Link } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import {
+  Container,
+  Box,
+  Stack,
+  Typography,
+  Divider,
+  Link,
+  Button
+} from '@mui/material'
 import AppInfo from './AppInfo'
 import pages from '../../config/pages'
 
 function Footer () {
+  const navigate = useNavigate()
+
   return (
     <Box
       sx={{
         backgroundColor: 'black',
-        paddingBottom: '10px'
+        paddingBottom: '10px',
       }}
     >
       <Container>
@@ -20,7 +31,7 @@ function Footer () {
             sx={{ width: '100%' }}
           >
             <Typography variant='body1' color={'white'}>
-              test123
+              Contact us:
             </Typography>
             <Stack
               direction={'row'}
@@ -29,20 +40,32 @@ function Footer () {
             >
               {pages.map(page => (
                 <Stack>
-                  <Link key={page.name} href={page.path} fontSize={'1.5rem'}>
+                  <Button
+                    size='small'
+                    key={page.name}
+                    onClick={() => navigate(page.path)}
+                    sx={{
+                      fontSize: '1.5rem',
+                      '&:hover': { textDecoration: 'underline' }
+                    }}
+                  >
                     {page.name}
-                  </Link>
+                  </Button>
                   {page.subPages && (
                     <Stack>
                       {page.subPages.map(subPage => (
                         <>
-                          <Link
+                          <Button
+                            size='small'
                             key={subPage.name}
-                            href={subPage.path}
-                            fontSize={'1rem'}
+                            onClick={() => navigate(subPage.path)}
+                            sx={{
+                              fontSize: '1rem',
+                              '&:hover': { textDecoration: 'underline' }
+                            }}
                           >
                             {subPage.name}
-                          </Link>
+                          </Button>
                         </>
                       ))}
                     </Stack>

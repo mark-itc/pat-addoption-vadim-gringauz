@@ -1,9 +1,13 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Box, Container, Button } from '@mui/material'
 import CoverImage from './CoverImage'
 import WelcomeMessage from './WelcomeMessage'
+import QuickSearch from './QuickSearch'
 
-function Hero () {
+function Hero() {
+const navigate = useNavigate()
+
   return (
     <Box
       sx={{
@@ -30,16 +34,13 @@ function Hero () {
             variant='contained'
             size='large'
             sx={{ width: 'fit-content' }}
+            onClick={() => navigate('/signin')}
           >
             Signin / Signup
           </Button>
-          <Button
-            variant='contained'
-            size='medium'
-            sx={{ width: 'fit-content' }}
-          >
-            Search Pets
-          </Button>
+
+          <QuickSearch />
+
         </Box>
       </Container>
     </Box>

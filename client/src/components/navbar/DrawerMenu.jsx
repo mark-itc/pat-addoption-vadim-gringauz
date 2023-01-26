@@ -1,14 +1,18 @@
 import React from 'react'
 import { useState } from 'react'
-import { 
-  Drawer, 
-  Stack, 
+import { useNavigate } from 'react-router-dom';
+import {
+  Drawer,
+  Stack,
   Button,
   IconButton,
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 
 function DrawerMenu({ pages }) {
+
+  const navigate = useNavigate()
+
   const [openDrawer, setOpenDrawer] = useState(false)
 
   const handleOpen = () => {
@@ -16,6 +20,10 @@ function DrawerMenu({ pages }) {
   }
   const handleClose = () => {
     setOpenDrawer(false)
+  }
+  const handleClick = (path) => {
+    navigate(path)
+    handleClose()
   }
 
   return (
@@ -39,8 +47,8 @@ function DrawerMenu({ pages }) {
           <>
             <Button
               key={page.name}
-              onClick={page.onClick}
-              // sx={{ my: 2, color: 'white', display: 'block' }}
+              onClick={() => handleClick(page.path)}
+            // sx={{ my: 2, color: 'white', display: 'block' }}
             >
               {page.name}
             </Button>
