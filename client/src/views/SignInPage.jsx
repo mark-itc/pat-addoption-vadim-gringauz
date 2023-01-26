@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import { createTheme } from '@mui/material/styles'
 import { Container, Tab, Box, Paper } from '@mui/material'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
