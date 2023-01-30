@@ -24,7 +24,7 @@ const theme = createTheme({
   }
 })
 
-function App () {
+function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -40,31 +40,19 @@ function App () {
           }
         ]}
       />
-      <Box
-        sx={{
-          // minHeight: '100vh',
-          minHeight: '100dvh',
-          display: 'grid',
-          gridTemplateRows: 'auto 1fr auto'
-        }}
-      >
-        <Navbar />
-        <Outlet />
-        <Footer />
-      </Box>
-      {/* <Grid
-        container
-        spacing={0}
-        sx={{
-          minHeight: '100vh',
-          minHeight: '100dvh'
-        }}
-      >
-        <Grid item>
-        </Grid>
-        <Grid item>
-        </Grid>
-      </Grid> */}
+        <Box
+          sx={{
+            // minHeight: '100vh',
+            minHeight: '100dvh',
+            display: 'grid',
+            gridAutoColumns: '100%',
+            gridTemplateRows: 'auto 1fr auto'
+          }}
+        >
+          <Navbar />
+          <Outlet />
+          <Footer />
+        </Box>
     </ThemeProvider>
   )
 }

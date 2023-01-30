@@ -40,6 +40,7 @@ function Stats() {
           textAlign={'center'}
           sx={{
             width: `${100 / tempStats.length}%`,
+            // width: '5%',
             aspectRatio: '1/1',
             fontSize: {xs: '0.3rem', sm: '0.5rem', md: '0.7rem', lg: '1rem'},
             backgroundColor: 'rgb(106, 90, 205, 0.5)',
