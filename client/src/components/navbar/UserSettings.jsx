@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import {
   Tooltip,
@@ -9,7 +10,9 @@ import {
   Typography
 } from '@mui/material'
 
-function UserSettings ({ userSettings, size }) {
+function UserSettings({ userSettings, size }) {
+  const navigate = useNavigate()
+
   const [anchorElUser, setAnchorElUser] = useState(null)
 
   const handleOpenUserMenu = event => {
@@ -20,15 +23,20 @@ function UserSettings ({ userSettings, size }) {
     setAnchorElUser(null)
   }
 
+  const handleOnClick = (path) => {
+    handleCloseUserMenu()
+    navigate(path)
+  }
+
   return (
     <>
       <Tooltip title='Open settings'>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar 
-          alt='Remy Sharp' 
-          src='/static/images/avatar/2.jpg'
-          sx={{ width: size, height: size }}
-           />
+          <Avatar
+            alt='Remy Sharp'
+            src='/static/images/avatar/2.jpg'
+            sx={{ width: size, height: size }}
+          />
         </IconButton>
       </Tooltip>
       <Menu
@@ -48,8 +56,10 @@ function UserSettings ({ userSettings, size }) {
         onClose={handleCloseUserMenu}
       >
         {userSettings.map(userSetting => (
-          <MenuItem key={userSetting.name} onClick={userSetting.onClick}>
-            <Typography textAlign='center'>{userSetting.name}</Typography>
+          <MenuItem key={userSetting.name} onClick={() => handleOnClick(userSetting.path)}>
+            <Typography textAlign='center' variant='button'>
+              {userSetting.name}
+            </Typography>
           </MenuItem>
         ))}
       </Menu>

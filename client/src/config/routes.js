@@ -8,6 +8,7 @@ import ErrorPage from '../views/ErrorPage'
 import PetPage from '../views/PetPage'
 import SearchPage from '../views/SearchPage'
 import WishList from '../views/WishList'
+import ProfileSettings from '../views/ProfileSettings'
 
 
 const router = createBrowserRouter([
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
         {
           path: '/wish-list',
           element: <WishList />
+        },
+        {
+          path: '/profile',
+          element: <ProfileSettings />
+        },
+        {
+          path: '/signout',
+          element: <div>Signing out!<br/> later will navigate to api endpoint</div>
         },
       ]
     }, 

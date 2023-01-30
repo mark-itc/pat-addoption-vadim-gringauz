@@ -25,12 +25,10 @@ function TopMenuItem ({ page }) {
   const [isHover, setIsHover] = useState(false)
 
   const openSubMenu = event => {
-    console.log('mouse enter')
     setIsHover(true)
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {
-    console.log('mouse leave')
     setIsHover(false)
     setAnchorEl(null)
   }

@@ -70,6 +70,15 @@ function SignUpForm() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                fullWidth
+                id="phone"
+                label="Phone number"
+                name="phone"
+                autoComplete="tel"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
                 required
                 fullWidth
                 name="password"
