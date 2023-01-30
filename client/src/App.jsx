@@ -7,6 +7,7 @@ import { Box } from '@mui/material'
 import generalTheme from './config/generalTheme'
 import Navbar from './components/navbar/Navbar'
 import Footer from './components/footer/Footer'
+import fonts from './config/fonts'
 import appLogo from './assets/logo.png'
 export { appLogo }
 
@@ -15,16 +16,7 @@ function App() {
     <ThemeProvider theme={generalTheme}>
       <CssBaseline />
       <GoogleFontLoader
-        fonts={[
-          {
-            font: 'Sono',
-            weights: [200, 300, 400, 500, 600, 700, 800]
-          },
-          {
-            font: 'Rubik Marker Hatch',
-            weights: [400]
-          }
-        ]}
+        fonts={fonts}
       />
         <Box
           sx={{

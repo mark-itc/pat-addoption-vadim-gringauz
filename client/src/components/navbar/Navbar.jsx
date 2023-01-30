@@ -2,7 +2,7 @@
 import * as React from 'react'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
-import { Container, Stack, useScrollTrigger } from '@mui/material'
+import { Container, useScrollTrigger } from '@mui/material'
 import NavbarSmallScreen from './NavbarSmallScreen'
 import NavbarBigScreen from './NavbarBigScreen'
 

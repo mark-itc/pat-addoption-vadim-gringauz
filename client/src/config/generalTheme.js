@@ -22,6 +22,12 @@ const generalTheme = createTheme({
         fontSize: '3em',
         fontVariant: 'all-petite-caps'
       },
+      h3: {
+        fontSize: '2em',
+      },
+      h4: {
+        fontSize: '1.5em',
+      },
       body1: {
         fontSize: '1.5em',
       },
