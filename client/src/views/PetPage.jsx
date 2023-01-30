@@ -1,8 +1,11 @@
 import React from 'react'
+import { Container } from '@mui/material'
 
 function PetPage() {
   return (
-    <div>PetPage</div>
+    <Container maxWidth='xl'>
+      PetPage
+    </Container>
   )
 }
 

@@ -4,6 +4,7 @@ import { Box, Container, Button } from '@mui/material'
 import CoverImage from './CoverImage'
 import WelcomeMessage from './WelcomeMessage'
 import QuickSearch from './QuickSearch'
+import { border } from '@mui/system'
 
 function Hero() {
 const navigate = useNavigate()
@@ -11,11 +12,11 @@ const navigate = useNavigate()
   return (
     <Box
       sx={{
-        position: 'relative'
+        position: 'relative',
       }}
     >
       <CoverImage />
-      <Container maxWidth='xl'>
+      <Container maxWidth='xl' >
         <Box
           sx={{
             position: 'absolute',
@@ -26,7 +27,7 @@ const navigate = useNavigate()
             flexDirection: 'column',
             gap: '30px',
             justifyContent: 'space-between',
-            fontSize: { xs: '15px', md: '25px' }
+            fontSize: { xs: '15px', md: '25px' },
           }}
         >
           <WelcomeMessage />
