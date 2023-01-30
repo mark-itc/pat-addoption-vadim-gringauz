@@ -4,7 +4,6 @@ import { Box, Container, Button } from '@mui/material'
 import CoverImage from './CoverImage'
 import WelcomeMessage from './WelcomeMessage'
 import QuickSearch from './QuickSearch'
-import { border } from '@mui/system'
 
 function Hero() {
 const navigate = useNavigate()

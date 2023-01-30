@@ -1,27 +1,30 @@
 const userSettings = [
     {
-        name: 'Profile',
+        name: 'Profile/Account',
         onClick: () => {
             console.log('navigate to Profile page')
-        }
+        },
+        path: '/profile'
     },
+    // {
+    //     name: 'Account',
+    //     onClick: () => {
+    //         console.log('navigate to Account page')
+    //     }
+    // },
     {
-        name: 'Account',
+        name: 'Dashboard*',
         onClick: () => {
             console.log('navigate to Account page')
-        }
+        },
+        path: '/dashboard'
     },
     {
-        name: 'Dashboard',
-        onClick: () => {
-            console.log('navigate to Account page')
-        }
-    },
-    {
-        name: 'Logout',
+        name: 'Sign out',
         onClick: () => {
             console.log('Logout')
-        }
+        },
+        path: '/signout'
     }
 ]
 

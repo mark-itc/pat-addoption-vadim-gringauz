@@ -1,8 +1,13 @@
 import React from 'react'
+import { Container, Typography } from '@mui/material'
 
 function ProfileSettings() {
   return (
-    <div>ProfileSettings</div>
+    <Container maxWidth='lg'>
+      <Typography variant='h1'>
+        Profile/Acount Settings
+      </Typography>
+    </Container>
   )
 }
 
