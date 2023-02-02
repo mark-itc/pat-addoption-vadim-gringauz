@@ -1,14 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from '../App'
 // import PrivateRoute from '../helpers/PrivateRoute'
-import WelcomePage from '../views/WelcomePage'
-import AboutPage from '../views/AboutPage'
-import SignInPage from '../views/SignInPage'
-import ErrorPage from '../views/ErrorPage'
-import PetPage from '../views/PetPage'
-import SearchPage from '../views/SearchPage'
-import WishList from '../views/WishList'
-import ProfileSettings from '../views/ProfileSettings'
+import WelcomePage from '../pages/WelcomePage'
+import AboutPage from '../pages/AboutPage'
+import SignInPage from '../pages/SignInPage'
+import ErrorPage from '../pages/ErrorPage'
+import PetPage from '../pages/PetPage'
+import SearchPage from '../pages/SearchPage'
+import WishList from '../pages/WishList'
+import ProfileSettings from '../pages/ProfileSettings'
+import Article from '../pages/Article'
+import SignOutTemp from '../pages/SignOutTemp'
 
 
 const router = createBrowserRouter([
@@ -45,8 +47,12 @@ const router = createBrowserRouter([
           element: <ProfileSettings />
         },
         {
+          path: '/why-adopt-article',
+          element: <Article />
+        },
+        {
           path: '/signout',
-          element: <div>Signing out!<br/> later will navigate to api endpoint</div>
+          element: <SignOutTemp />
         },
       ]
     }, 

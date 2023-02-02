@@ -1,27 +1,20 @@
 import React from 'react'
 import { Typography, Stack } from '@mui/material'
 
-function WelcomeMessage() {
+function WelcomeMessage({ color }) {
   return (
-    <Stack spacing={3}>
-      <Typography
-        variant='h1'
-        color='secondary'
-        sx={{ textShadow: '2px 2px 2px black' }}
-      >
-        Make a friend for life
-      </Typography>
+    <Stack spacing={{xs: 1, md: 3}}>
       <Typography
         variant='h3'
         fontWeight={'bold'}
-        color='white'
+        color={color}
         sx={{ textShadow: '2px 2px 2px black', maxWidth: '600px', textAlign: 'center' }}
       >
         Welcome to We🧡Pets
       </Typography>
       <Typography
-        variant='h4'
-        color='white'
+        variant='h3'
+        color={color}
         sx={{ textShadow: '2px 2px 2px black', maxWidth: '600px', textAlign: 'center' }}
       >
         Our mission is to find a warm loving home for all dogs and cats<br/><br/>

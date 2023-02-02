@@ -1,12 +1,12 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Box, Container, Button } from '@mui/material'
+import { Box, Stack, Button } from '@mui/material'
 import CoverImage from './CoverImage'
+import Title from './Title'
 import WelcomeMessage from './WelcomeMessage'
-import QuickSearch from './QuickSearch'
 
 function Hero() {
-const navigate = useNavigate()
+  const navigate = useNavigate()
 
   return (
     <Box
@@ -15,21 +15,18 @@ const navigate = useNavigate()
       }}
     >
       <CoverImage />
-      <Container maxWidth='xl' >
-        <Box
-          sx={{
-            position: 'absolute',
-            top: '0',
-            height: '50%',
-            padding: '30px 0',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '30px',
-            justifyContent: 'space-between',
-            fontSize: { xs: '15px', md: '25px' },
-          }}
-        >
-          <WelcomeMessage />
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '0',
+          zIndex: 99,
+          padding: '0 50px',
+          fontSize: { xs: '0.8rem', sm: '1rem', md: '1.2rem', lg: '1.5rem' },
+        }}
+      >
+        <Stack spacing={{xs: 2,md: 5}} alignItems={'center'} mb={10}>
+          <Title />
+          <WelcomeMessage color={'white'} />
           <Button
             variant='contained'
             size='large'
@@ -38,11 +35,9 @@ const navigate = useNavigate()
           >
             Signin / Signup
           </Button>
+        </Stack>
 
-          <QuickSearch />
-
-        </Box>
-      </Container>
+      </Box>
     </Box>
   )
 }
