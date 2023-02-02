@@ -27,7 +27,7 @@ function NavbarSmallScreen () {
 
       <Box sx={{ flex: 1, display: 'flex', justifyContent: 'right' }}>
         <DarkModeToggle />
-        <UserSettings userSettings={userSettings} size={'60px'} />
+        <UserSettings userSettings={userSettings} size={'50px'} />
       </Box>
     </Stack>
   )

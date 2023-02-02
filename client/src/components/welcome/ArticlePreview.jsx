@@ -1,23 +1,28 @@
 import React from 'react'
-import { Box, Stack, Typography, Paper } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { Box, Stack, Typography, Button } from '@mui/material'
 import img from '../../assets/article-preview.jpg'
 
-function ArticlePreview() {
+function ArticlePreview({ summary }) {
+    const navigate = useNavigate()
     return (
-        <Paper elevation={10} >
-            <Stack direction={'row'} >
-                <Box sx={{ flex: '3' }} >
-                    <Typography >
-                        Pets can have a positive impact on one's life in numerous ways. Here are some of the most common benefits...
-                        <Link to={'/why-adopt-article'} >Read more...</Link>
-                    </Typography>
-                </Box>
-                <Box sx={{ flex: '1' }} >
-                    <img loading='lazy' src={img} alt='preview' width={'400px'} />
-                </Box>
-            </Stack>
-        </Paper>
+        <Stack
+            direction={'row'}
+            bgcolor={'lightblue'}
+            justifyContent={'space-around'}
+        >
+            <Box
+                sx={{ flex: '3', padding: '10px' }}
+            >
+                <Typography >
+                    "{summary}"
+                </Typography>
+                <Button variant='outlined' size='small' onClick={() => navigate('/why-adopt-article')} >Read more...</Button>
+            </Box>
+            <Box sx={{ flex: '1', maxWidth: '400px', display: {xs: 'none', md: 'block'} }} >
+                <img loading='lazy' src={img} alt='preview' width={'100%'} />
+            </Box>
+        </Stack>
     )
 }
 

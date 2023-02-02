@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  Box,
+  Paper,
   FormControl,
   Select,
   MenuItem,
@@ -16,21 +16,23 @@ function QuickSearch() {
   const navigate = useNavigate()
 
   return (
-    <Box sx={{
-      mt: { xs: 1, lg: 10 },
-      maxWidth: '600px',
-      border: '1px black solid',
-      borderRadius: '10px',
-      padding: '25px',
-      backgroundColor: 'rgba(0,0,0,.2)'
-    }}
+    <Paper
+      elevation={20}
+      sx={{
+        maxWidth: '900px',
+        borderRadius: '20px',
+        padding: '15px 25px',
+        backgroundColor: 'rgba(0,0,0,.2)'
+      }}
     >
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12}>
-          <FormLabel sx={{ color: 'white' }} >What are you looking for?</FormLabel>
+          <FormLabel sx={{ color: 'white', fontSize: '2rem' }} >
+            What are you looking for?
+          </FormLabel>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <FormControl size='small' >
+          <FormControl size='small' sx={{ width: '100%' }}>
             <InputLabel id="type-label">Type</InputLabel>
             <Select
               // displayEmpty={true}
@@ -49,7 +51,7 @@ function QuickSearch() {
           </FormControl>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <FormControl size='small' >
+        <FormControl size='small' sx={{ width: '100%' }}>
             <InputLabel id="size-label">Size</InputLabel>
             <Select
               labelId="size-label"
@@ -71,14 +73,14 @@ function QuickSearch() {
           <Button
             variant='contained'
             size='small'
-            sx={{ width: 'fit-content' }}
+            sx={{ width: '100%' }}
             onClick={() => navigate('/search')}
           >
             Search Pets
           </Button>
         </Grid>
       </Grid>
-    </Box>
+    </Paper>
   )
 }
 
