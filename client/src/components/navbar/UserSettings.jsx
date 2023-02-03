@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import {
@@ -12,6 +13,9 @@ import {
 
 function UserSettings({ userSettings, size }) {
   const navigate = useNavigate()
+
+  const { isSignedIn } = useSelector((state) => state.auth)
+
 
   const [anchorElUser, setAnchorElUser] = useState(null)
 
@@ -35,7 +39,7 @@ function UserSettings({ userSettings, size }) {
           <Avatar
             alt='Remy Sharp'
             src='/static/images/avatar/2.jpg'
-            sx={{ width: size, height: size }}
+            sx={{ width: size, height: size, backgroundColor: isSignedIn ? 'red' : 'blue' }}
           />
         </IconButton>
       </Tooltip>

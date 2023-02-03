@@ -24,7 +24,7 @@ function Hero() {
           fontSize: { xs: '0.8rem', sm: '1rem', md: '1.2rem', lg: '1.5rem' },
         }}
       >
-        <Stack spacing={{xs: 2,md: 5}} alignItems={'center'} mb={10}>
+        <Stack spacing={{xs: 1,md: 5}} alignItems={'center'} mb={10}>
           <Title />
           <WelcomeMessage color={'white'} />
           <Button

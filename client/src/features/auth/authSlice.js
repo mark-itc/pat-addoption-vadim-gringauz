@@ -1,25 +1,24 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    signedIn: false,
+    isSignedIn: false,
     email: '',
 };
 
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
-
     reducers: {
-        signIn: (state, action) => {
-            state.signedIn = true;
-            state.email = action.payload
+        signIn (state) {
+            state.isSignedIn = true;
+            // state.email = action.payload
         },
-        SignOut: (state) => {
-            state.signedIn = false;
+        signOut (state) {
+            state.isSignedIn = false;
         },
     },
 });
 
-export const { signIn, SignOut } = authSlice.actions;
+export const { signIn, signOut } = authSlice.actions;
 
 export default authSlice.reducer;

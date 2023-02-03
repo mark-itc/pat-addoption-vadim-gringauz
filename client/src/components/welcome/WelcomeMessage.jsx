@@ -17,7 +17,7 @@ function WelcomeMessage({ color }) {
         color={color}
         sx={{ textShadow: '2px 2px 2px black', maxWidth: '600px', textAlign: 'center' }}
       >
-        Our mission is to find a warm loving home for all dogs and cats<br/><br/>
+        Our mission is to find a warm loving home for all dogs and cats<br/>
         and for you to find your perfect match
       </Typography>
     </Stack>
