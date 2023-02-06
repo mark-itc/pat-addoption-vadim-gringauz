@@ -1,12 +1,12 @@
-import { signIn } from "../features/auth/authSlice"
-import { useSelector, useDispatch } from 'react-redux';
+// import { signIn } from "../features/auth/authSlice"
+// import { useSelector, useDispatch } from 'react-redux';
 
 
 
 class Authenticator {
-    constructor() {
+    // constructor() {
 
-    }
+    // }
 
     signIn ({ email, password }) {
         console.log('action: sign in,', {email}, {password})
@@ -16,5 +16,5 @@ class Authenticator {
         console.log('action: sign out')
     }
 }
-const authenticator = new Authenticator
+const authenticator = new Authenticator()
 export default authenticator

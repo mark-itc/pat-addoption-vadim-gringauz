@@ -12,7 +12,7 @@ function SignOutTemp() {
     useEffect(() => {
         authenticator.signOut()
         dispatch(signOut())
-    }, [])
+    }, [dispatch])
 
     return (
         <Container>

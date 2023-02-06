@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Container, Box, Stack, Typography, Button } from '@mui/material'
+import { Container, Box, Stack, Button } from '@mui/material'
 import AppInfo from './AppInfo'
 import CreatedWith from './CreatedWith'
 import pages from '../../config/pages'
