@@ -1,5 +1,6 @@
 import React from 'react'
-import { Box, Stack } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import { Box, Stack, Button } from '@mui/material'
 import { Carousel } from 'react-mui-carousel'
 import PreviewCard from './PreviewCard'
 import pets from '../../config/previewPets'
@@ -9,6 +10,8 @@ const items = pets.map((pet) => (
 ))
 
 function Preview() {
+  const navigate = useNavigate()
+
   return (
     <Stack alignItems={'center'} width={'100%'} >
       <Box
@@ -19,6 +22,7 @@ function Preview() {
       >
         <Carousel items={items} />
       </Box>
+      <Button variant='contained' onClick={() => navigate('/pets')} >Browse all pets</Button>
     </Stack>
   )
 }

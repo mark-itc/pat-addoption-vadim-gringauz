@@ -2,18 +2,16 @@ import React from 'react'
 import { Stack, Box } from '@mui/material'
 import Logo from './Logo'
 import DrawerMenu from './DrawerMenu'
-import UserSettings from './UserSettings'
-import userSettings from '../../config/userSettingsList'
+import UserStatus from './UserStatus'
 import DarkModeToggle from './DarkModeToggle'
 import pages from '../../config/pages'
 
-function NavbarSmallScreen () {
+function NavbarSmallScreen() {
   return (
     <Stack
       direction={'row'}
       alignItems={'center'}
       sx={{
-        display: { xs: 'flex', md: 'none' },
         width: '100%',
       }}
     >
@@ -27,7 +25,7 @@ function NavbarSmallScreen () {
 
       <Box sx={{ flex: 1, display: 'flex', justifyContent: 'right' }}>
         <DarkModeToggle />
-        <UserSettings userSettings={userSettings} size={'60px'} />
+        <UserStatus />
       </Box>
     </Stack>
   )

@@ -29,9 +29,9 @@ function Stats() {
   return (
     <Stack
       direction={'row'}
-      spacing={2}
+      spacing={3}
       sx={{ width: '100%' }}
-      justifyContent={'space-between'}
+      justifyContent={'center'}
     // alignItems={'center'}
     >
       {tempStats.map(stat => (

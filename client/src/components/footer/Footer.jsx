@@ -1,13 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import {
-  Container,
-  Box,
-  Stack,
-  Typography,
-  Button
-} from '@mui/material'
+import { Container, Box, Stack, Button } from '@mui/material'
 import AppInfo from './AppInfo'
+import CreatedWith from './CreatedWith'
 import pages from '../../config/pages'
 
 function Footer () {
@@ -17,7 +12,7 @@ function Footer () {
     <Box
       sx={{
         backgroundColor: 'black',
-        paddingBottom: '10px',
+        paddingBottom: '10px'
       }}
     >
       <Container>
@@ -28,9 +23,7 @@ function Footer () {
             justifyContent={'space-evenly'}
             sx={{ width: '100%' }}
           >
-            <Typography variant='body1' color={'white'}>
-              Contact us:
-            </Typography>
+            <CreatedWith />
             <Stack
               direction={'row'}
               spacing={8}

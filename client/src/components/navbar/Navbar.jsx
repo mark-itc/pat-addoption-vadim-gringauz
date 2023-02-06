@@ -1,12 +1,15 @@
-// import React from 'react'
-import * as React from 'react'
+import React from 'react'
+import useMediaQuery from '@mui/material/useMediaQuery';
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import { Container, useScrollTrigger } from '@mui/material'
 import NavbarSmallScreen from './NavbarSmallScreen'
 import NavbarBigScreen from './NavbarBigScreen'
 
-function Navbar () {
+function Navbar() {
+
+  const isMobile = useMediaQuery('(width <= 900px)');
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0
@@ -23,11 +26,7 @@ function Navbar () {
     >
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-
-          <NavbarBigScreen />
-
-          <NavbarSmallScreen />
-
+          {isMobile ? <NavbarSmallScreen /> : <NavbarBigScreen />}
         </Toolbar>
       </Container>
     </AppBar>
