@@ -4,6 +4,8 @@ import { RouterProvider } from 'react-router-dom'
 import router from './config/routes'
 import { Provider } from 'react-redux'
 import { store } from './app/store'
+import { useSelector } from 'react-redux'
+
 
 const container = document.getElementById('root')
 const root = createRoot(container)
