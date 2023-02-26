@@ -14,61 +14,45 @@ const StyledMenu = styled(Menu)`
   .MuiMenu-paper {
     background-color: ${orange['A700']};
   }
-  // border-radius: 0;
 `
 
 function TopMenuItem ({ page }) {
   const navigate = useNavigate()
 
   const [anchorEl, setAnchorEl] = useState(null)
-  const showSunMenu = Boolean(anchorEl)
-  const [isHover, setIsHover] = useState(false)
+  const open = Boolean(anchorEl)
+
+  const handleTopMenuItemClick = event => {
+    page.subPages ? openSubMenu(event) : navigate(page.path)
+  }
 
   const openSubMenu = event => {
-    setIsHover(true)
     setAnchorEl(event.currentTarget)
   }
-  const handleClose = () => {
-    setIsHover(false)
+  const handleClose = event => {
     setAnchorEl(null)
   }
 
   return (
     <Box sx={{}}>
-      {/* <NavLink
-        to='/'
-        // className={({ isActive }) => (isActive ? activeClassName : undefined)}
-      >
-        {page.name}
-      </NavLink> */}
-      <NavMenuButton
-        key={page.name}
-        onClick={() => navigate(page.path)}
-        onMouseEnter={openSubMenu}
-        onMouseLeave={handleClose}
-      >
+      <NavMenuButton key={page.name} onClick={handleTopMenuItemClick}>
         {page.name}
       </NavMenuButton>
       {page.subPages && (
-        <StyledMenu
-          TransitionComponent={Fade}
-          elevation={0}
-          id='basic-menu'
-          anchorEl={anchorEl}
-          open={showSunMenu}
-          onClose={handleClose}
-          MenuListProps={{
-            onMouseLeave: handleClose
-          }}
-          sx={{
-            pointerEvents: isHover ? 'none' : 'all',
-            borderRadius: '0'
-          }}
-        >
-          {page.subPages.map(subPage => (
-            <MenuItem key={subPage.name} onClick={null}>{subPage.name}</MenuItem>
-          ))}
-        </StyledMenu>
+        <>
+          <StyledMenu
+            id={page.name}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+          >
+            {page.subPages.map(subPage => (
+              <MenuItem key={subPage.name} onClick={null}>
+                {subPage.name}
+              </MenuItem>
+            ))}
+          </StyledMenu>
+        </>
       )}
     </Box>
   )
