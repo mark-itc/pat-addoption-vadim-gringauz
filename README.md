@@ -1,4 +1,4 @@
-# Final Project :collision: Pet Adoption web-app <img src='./logo.png' width=30px />
+# Final Project :collision: Pet Adoption web-app <img src='./logo.png' width=50px />
 Deployed app (link)
 ## Summary
 ### :computer: Frontend
