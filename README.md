@@ -1,9 +1,22 @@
-## Final Project! Pet Adoption app
-# Planning stage - 
-1
-Frontend:
+# Final Project :collision: Pet Adoption web-app <img src='./logo.png' width=30px />
+Deployed app (link)
+## Summary
+### :computer: Frontend
+ * **UI Frameword**: React
+ * **CSS and styling**: MUI + "Styled Components"
+ * **State Management**: Redux
+ * **Hosting**: AWS S3
+### :file_folder: Backend
+* **Framework**: Node.js
+* **Main Libraries**: Express, JWT, AJV, Mongoose
+* **DB**: MondgoDB
+### Tests
 
-Backend:
+## :clipboard: Stages
+### 1. **Frontend**: Basic UI without bussiness logic :white_check_mark:
+### 2. **Backend**: MVC Structure + write all endpoints/routes
+### 3. **Backend**: Write the controllers
+### 4. **Frontend**: Finish UI
 
 
 
