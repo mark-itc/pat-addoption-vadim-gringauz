@@ -5,11 +5,12 @@ const UsersDAO = require('../models/UsersDAO')
 const logger = require('../utils/logger')
 const {
   signInValidation,
-  signUpValidation
+  signUpValidation,
+  updateValidation
 } = require('../validations/usersValidations')
 
 module.exports = class UsersController {
-  //
+  // AUTH RELATED
   static async signUp (req, res) {
     //
     try {
@@ -24,21 +25,12 @@ module.exports = class UsersController {
         email: req.body.email,
         password: req.body.password,
         passwordVerify: req.body.passwordVerify,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        phone: req.body.phone
+        firstName: req.body.firstName ?? null,
+        lastName: req.body.lastName ?? null,
+        phone: req.body.phone ?? null
       }
-
-      //! TODO: is email unique??
       //TODO:
       // const existingUser = await UsersDAO.getUserByUsername(userObject.username)
-      const existingUser = false
-      if (existingUser) {
-        return res.status(400).json({
-          success: false,
-          message: '❌ Please select a different username'
-        })
-      }
 
       if (newUserObject.password !== newUserObject.passwordVerify) {
         return res.status(400).json({
@@ -50,8 +42,7 @@ module.exports = class UsersController {
       newUserObject.password = sha256(newUserObject.password)
 
       const newUserID = await UsersDAO.createUser(newUserObject)
-      console.log(newUserID)
-      return res.status(200).json({
+      return res.status(201).json({
         succes: true,
         message: '✅ New user signed up successfully',
         newUserID: newUserID
@@ -68,7 +59,6 @@ module.exports = class UsersController {
   static async signIn (req, res) {
     try {
       const validRequest = signInValidation(req.body)
-
       if (!validRequest)
         return res.status(400).json({
           success: false,
@@ -83,6 +73,7 @@ module.exports = class UsersController {
         })
       }
 
+      //! EMAIL + PASSWORD ARE VALID AND APPROVED => CREATE TOKEN
       const accessToken = jwt.sign(
         {
           user_id: user._id,
@@ -91,7 +82,7 @@ module.exports = class UsersController {
         process.env.ACCESS_TOKEN_SECRET
       )
 
-      res.json({
+      res.status(200).json({
         accessToken: accessToken
       })
     } catch (err) {
@@ -104,4 +95,92 @@ module.exports = class UsersController {
   }
 
   static async signOut (req, res) {}
+
+  // DB RELATED
+  static async getUserByID (req, res, next) {
+    let result
+    try {
+      result = await UsersDAO.getUserByID(req.params.id)
+      if (!result) {
+        logger('UsersController.getUserByID', 'user not found')
+        return res.status(404).json({
+          success: false,
+          message: '❌ Can not find user'
+        })
+      }
+    } catch (err) {
+      logger('UsersController.getUserByID', err.message)
+      return res.status(500).json({
+        success: false,
+        message: '❌ Unknown error'
+      })
+    }
+
+    req.user = result
+    next()
+  }
+
+  static getOneUser (req, res) {
+    return res.status(200).json({ user: req.user })
+  }
+
+  static async getAllUsers (req, res) {
+    try {
+      const result = await UsersDAO.getAll()
+      return res.status(200).json({ users: result })
+    } catch (err) {
+      logger('UsersController.getAllUsers', err.message)
+      return res.status(500).json({
+        success: false,
+        message: '❌ Unknown error'
+      })
+    }
+  }
+
+  static async resetPassword () {}
+
+  static async updateUser (req, res) {
+    try {
+      const validRequest = updateValidation(req.body)
+      if (!validRequest)
+        return res.status(400).json({
+          success: false,
+          message: '❌ Fields not valid'
+        })
+
+      const result = await UsersDAO.updateUser(req.user._id, req.body)
+      return res.status(200).json({
+        succes: true,
+        updatedFileds: req.body
+      })
+    } catch (err) {
+      logger('UsersController.updateUser', err.message)
+      return res.status(500).json({
+        success: false,
+        message: `❌ ${err.message}`
+      })
+    }
+  }
+
+  static async deleteUser (req, res) {
+    //
+    try {
+      const result = await UsersDAO.deleteUser(req.user._id)
+
+      return res.status(200).json({
+        succes: true,
+        message: `✅ User (${req.user._id} deleted succesfully)`
+      })
+    } catch (err) {
+      logger('UsersController.deleteUser', err.message)
+      return res.status(500).json({
+        success: false,
+        message: `❌ ${err.message}`
+      })
+    }
+  }
+
+  static async makeAdmin (req, res) {}
+
+  static async removeAdmin (req, res) {}
 }

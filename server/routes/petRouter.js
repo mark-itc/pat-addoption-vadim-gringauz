@@ -5,29 +5,21 @@ const PetsController = require('../controllers/PetsController')
 
 const authMiddleware = require('../middlewares/authMiddleware')
 
-router.post('/', (req, res) => {
-  // create a new pet
-})
+router.post('/new', PetsController.createPet)
+router.get('/:id', PetsController.getPetByID, PetsController.getOnePet)
+router.get('/', PetsController.getPets)
+router.post('/:id/adopt', authMiddleware, PetsController.getPetByID, PetsController.adopt)
+router.delete('/:id/adopt', authMiddleware, PetsController.getPetByID, PetsController.clearStatus)
 
-router.get('/:id', (req, res) => {
-  // return a specific pet, by id
-})
+
 
 router.put('/:id', (req, res) => {
   // update a specific pet
 })
 
-router.get('/', (req, res) => {
-  // (search) retrieving pets that match the criteria given.
-})
 
-// router.post('/:id/adopt', PetsController.adopt)
-router.post('/:id/adopt', authMiddleware, PetsController.adopt)
 
-router.post('/:id/return', (req, res) => {
-  //! protected to logged in users!!!
-  // Unmark
-})
+
 
 router.post('/:id/save', (req, res) => {
   //! protected to logged in users!!!

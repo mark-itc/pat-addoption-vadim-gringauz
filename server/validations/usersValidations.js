@@ -25,3 +25,16 @@ module.exports.signInValidation = ajv.compile({
     required: ['email', 'password'],
     additionalProperties: false
 })
+
+module.exports.updateValidation = ajv.compile({
+    type: 'object',
+    properties: {
+        email: { type: 'string' },
+        password: { type: 'string' },
+        firstName: { type: 'string' },
+        lastName: { type: 'string' },
+        phone: { type: 'string' }
+    },
+    required: [],
+    additionalProperties: false
+})

@@ -6,7 +6,6 @@ async function authMiddleware (req, res, next) {
   try {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
-    console.log({ token })
     if (token == null) {
       logger('authMiddleware', 'no tokken')
       return res.sendStatus(401)
@@ -19,7 +18,10 @@ async function authMiddleware (req, res, next) {
     }
 
     //! Token is valid
-    req.currentUser = userData
+    logger('authMiddleware', '✅ Tokken valid')
+    req.currentUser = tokenData
+    console.log(tokenData)
+    console.log('next?')
     next()
   } catch (err) {
     //TODO complete msg

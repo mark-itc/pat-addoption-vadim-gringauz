@@ -6,25 +6,21 @@ const authMiddleware = require('../middlewares/authMiddleware')
 
 router.post('/signup', UsersController.signUp)
 router.post('/signin', UsersController.signIn)
-router.post('/signout', (req, res) => {
+
+// TODO
+router.delete('/signout', (req, res) => {
   // log out
 })
 
-router.get('/:id', (req, res) => {
-  // return a specific user by id
-})
+router.get('/:id', UsersController.getUserByID, UsersController.getOneUser)
+router.patch('/:id', UsersController.getUserByID, UsersController.updateUser)
 
-router.put('/:id', (req, res) => {
-  // update a specific user
-})
 
-router.get('/', (req, res) => {
-  // return all users
-  //! protected to ADMIN
-})
 
-router.delete('/:id', (req, res) => {
-  // delete a specific user
-})
+  //TODO protected to ADMIN:
+router.get('/', UsersController.getAllUsers)
+router.patch('/:id/make-admin', UsersController.getUserByID, UsersController.makeAdmin)
+router.patch('/:id/make-admin', UsersController.getUserByID, UsersController.removeAdmin)
+router.delete('/:id', UsersController.getUserByID, UsersController.deleteUser)
 
 module.exports = router

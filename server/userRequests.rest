@@ -1,0 +1,63 @@
+#! SIGN-IN
+POST http://localhost:3005/user/signin
+Content-Type: application/json
+
+{
+    "email": "luka77@gmail.com",
+    "password": "123456"
+}
+
+
+###
+#! MARK AS RESERVED FOR ADOPTION
+POST http://localhost:3005/pet/1/adopt
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibHVrYTc3IiwiaWF0IjoxNjc3NzczMzk1fQ.0bM44ilSKsFw3c4QqhNKANpRt5RDiRxSPqK1km7n6Jo
+
+###
+#! SIGN-UP
+POST http://localhost:3005/user/signup
+Content-Type: application/json
+
+{
+    "email": "luka77@gmail.com",
+    "password": "123456",
+    "passwordVerify": "123456",
+    "firstName": "Luka1",
+    "lastName": "Doncic2",
+    "phone": "0547669355"
+}
+###
+#! SIGN-UP2
+POST http://localhost:3005/user/signup
+Content-Type: application/json
+
+{
+    "email": "lb000@gmail.com",
+    "password": "123456",
+    "passwordVerify": "123456",
+    "firstName": "LeBron",
+    "phone": "0547669355"
+}
+
+###
+#! GET USER BY ID 
+GET http://localhost:3005/user/640346e2ec94da3d8c35691c
+
+###
+#! GET ALL USERS  
+GET http://localhost:3005/user/
+
+###
+#! DELETE USER 
+DELETE http://localhost:3005/user/64026afcad0aae3484d4dce2
+
+###
+#! UPDATE USER 
+PATCH  http://localhost:3005/user/640346e2ec94da3d8c35691c
+Content-Type: application/json
+
+{
+    "firstName": "LeBron",
+    "lastName": "James",
+    "phone": "212312324"
+}
