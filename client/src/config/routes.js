@@ -35,7 +35,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/why-adopt-article',
-        element: <Article />
+        element: <Article />,
+        action: () => {
+          // scrollBy(0, 0)
+          console.log('12134343')
+        },
       },
       {
         element: <PrivateRoute />,

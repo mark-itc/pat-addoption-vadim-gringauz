@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import WelcomePage from '../pages/WelcomePage'
 
 function PrivateRoute() {
-  const { isSignedIn, signedUser } = useSelector((state) => state.auth)
+  const { isSignedIn } = useSelector((state) => state.auth)
 
   return (
     <>

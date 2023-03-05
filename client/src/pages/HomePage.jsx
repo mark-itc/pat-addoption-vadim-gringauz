@@ -1,5 +1,8 @@
 import React from 'react'
-// import { Container, Stack } from '@mui/material'
+import { Container, Stack } from '@mui/material'
+import Header from '../components/homepage/Header'
+import QuickSearch from '../components/QuickSearch'
+import Status from '../components/homepage/Status'
 // import QuickSearch from '../components/QuickSearch'
 // import Preview from '../components/welcome/Preview'
 // import Articles from '../components/welcome/Articles'
@@ -7,8 +10,10 @@ import React from 'react'
 
 function HomePage() {
   return (
-    <>
-      <div>Home page </div>
+    <Container maxWidth={'xl'}>
+      <Header />
+      <QuickSearch />
+      <Status />
       {/* <Container>
         <Stack
           alignItems={'center'}
@@ -23,7 +28,7 @@ function HomePage() {
           <Stats />
         </Stack>
       </Container> */}
-    </>
+    </Container>
   )
 }
 
