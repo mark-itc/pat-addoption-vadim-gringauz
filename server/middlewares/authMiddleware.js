@@ -20,8 +20,6 @@ async function authMiddleware (req, res, next) {
     //! Token is valid
     logger('authMiddleware', '✅ Tokken valid')
     req.currentUser = tokenData
-    console.log(tokenData)
-    console.log('next?')
     next()
   } catch (err) {
     //TODO complete msg

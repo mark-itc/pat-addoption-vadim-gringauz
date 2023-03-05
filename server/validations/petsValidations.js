@@ -17,3 +17,19 @@ module.exports.newPetValidation = ajv.compile({
   required: ['name', 'type', 'size'],
   additionalProperties: false
 })
+
+module.exports.updatePetValidation = ajv.compile({
+  type: 'object',
+  properties: {
+    name: { type: 'string' },
+    type: { type: 'string', enum: ['dog', 'cat'] },
+    breed: { type: 'string' },
+    size: { type: 'string', enum: ['xs', 's', 'm', 'l', 'xl'] },
+    color: { type: 'string' },
+    bio: { type: 'string' },
+    hypoallergenic: { type: 'boolean' },
+    dietaryRestrictions: { type: 'string' }
+  },
+  required: [],
+  additionalProperties: false
+})

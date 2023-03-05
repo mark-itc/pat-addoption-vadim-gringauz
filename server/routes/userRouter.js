@@ -4,6 +4,7 @@ const UsersController = require('../controllers/UsersController')
 
 const authMiddleware = require('../middlewares/authMiddleware')
 
+//! PUBLIC ROUTES:
 router.post('/signup', UsersController.signUp)
 router.post('/signin', UsersController.signIn)
 
@@ -15,12 +16,33 @@ router.delete('/signout', (req, res) => {
 router.get('/:id', UsersController.getUserByID, UsersController.getOneUser)
 router.patch('/:id', UsersController.getUserByID, UsersController.updateUser)
 
-
-
-  //TODO protected to ADMIN:
-router.get('/', UsersController.getAllUsers)
-router.patch('/:id/make-admin', UsersController.getUserByID, UsersController.makeAdmin)
-router.patch('/:id/make-admin', UsersController.getUserByID, UsersController.removeAdmin)
-router.delete('/:id', UsersController.getUserByID, UsersController.deleteUser)
+//! PROTECTED TO ADMIN:
+router.get(
+  '/',
+  authMiddleware,
+  UsersController.isAdmin,
+  UsersController.getAllUsers
+)
+router.patch(
+  '/:id/make-admin',
+  authMiddleware,
+  UsersController.isAdmin,
+  UsersController.getUserByID,
+  UsersController.makeAdmin
+)
+router.patch(
+  '/:id/make-admin',
+  authMiddleware,
+  UsersController.isAdmin,
+  UsersController.getUserByID,
+  UsersController.removeAdmin
+)
+router.delete(
+  '/:id',
+  authMiddleware,
+  UsersController.isAdmin,
+  UsersController.getUserByID,
+  UsersController.deleteUser
+)
 
 module.exports = router

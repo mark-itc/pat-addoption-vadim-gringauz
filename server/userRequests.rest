@@ -3,7 +3,7 @@ POST http://localhost:3005/user/signin
 Content-Type: application/json
 
 {
-    "email": "luka77@gmail.com",
+    "email": "luka7711@gmail.com",
     "password": "123456"
 }
 
@@ -19,7 +19,7 @@ POST http://localhost:3005/user/signup
 Content-Type: application/json
 
 {
-    "email": "luka77@gmail.com",
+    "email": "luka7711@gmail.com",
     "password": "123456",
     "passwordVerify": "123456",
     "firstName": "Luka1",
@@ -45,11 +45,13 @@ GET http://localhost:3005/user/640346e2ec94da3d8c35691c
 
 ###
 #! GET ALL USERS  
-GET http://localhost:3005/user/
+GET  http://localhost:3005/user/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDA0ZmM3MTE1NzcxZjI0Y2M1Y2ViYjQiLCJlbWFpbCI6Imx1a2E3NzExQGdtYWlsLmNvbSIsImlhdCI6MTY3ODA0ODM3N30.bUXZxbWV4SThLTIP85JU81yJ9KsQCn1pou40fD3wMys
+
 
 ###
 #! DELETE USER 
-DELETE http://localhost:3005/user/64026afcad0aae3484d4dce2
+DELETE http://localhost:3005/user/6403b1cd380939122837157c
 
 ###
 #! UPDATE USER 

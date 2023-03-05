@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { boolean } = require('webidl-conversions')
 
 const petSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -16,7 +17,8 @@ const petSchema = new mongoose.Schema({
   hypoallergenic: { type: Boolean, required: false, default: false },
   dietaryRestrictions: { type: String, required: false, default: null },
   image: { type: String },
-  createdAt: { type: String, required: true, default: Date.now }
+  createdAt: { type: String, required: true, default: Date.now },
+  deleted: { type: Boolean, default: false }
 })
 
 const Pet = mongoose.model('Pet', petSchema)
@@ -45,9 +47,23 @@ module.exports = class PetsDAO {
       return
     }
   }
+  
+  static async getPetsByIDs (petIds) {
+    try {
+      const pets = await Pet.find({ _id: { $in: petIds } })
+      return pets
+    } catch (err) {
+      return
+    }
+  }
 
   static async updatePet (id, updateFields) {
     const result = await Pet.updateOne({ _id: id }, { $set: updateFields })
+    return result
+  }
+
+  static async deletePet (id) {
+    const result = await Pet.deleteOne({ _id: id })
     return result
   }
 }

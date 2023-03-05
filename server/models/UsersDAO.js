@@ -41,13 +41,27 @@ module.exports = class UsersDAO {
   }
 
   static async deleteUser (id) {
-    //
-    return
+    const result = await User.deleteOne({ _id: id })
+    return result
   }
 
   static async updateUser (id, updateFields) {
 
     const result = await User.updateOne({ _id: id }, { $set: updateFields })
+    return result
+  }
+  
+  static async addPetToWishList (userID, petID) {
+
+    const result = await User.updateOne({ _id: userID }, { $addToSet: { petsWishList: petID } })
+    return result
+  }
+  
+  static async removePetFromWishList (userID, petID) {
+
+    const result = await User.updateOne({ _id: userID }, { $pull: { petsWishList: petID } })
+    console.log(User)
+    console.log(result)
     return result
   }
 }

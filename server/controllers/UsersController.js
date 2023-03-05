@@ -76,7 +76,7 @@ module.exports = class UsersController {
       //! EMAIL + PASSWORD ARE VALID AND APPROVED => CREATE TOKEN
       const accessToken = jwt.sign(
         {
-          user_id: user._id,
+          _id: user._id,
           email: user.email
         },
         process.env.ACCESS_TOKEN_SECRET
@@ -105,7 +105,7 @@ module.exports = class UsersController {
         logger('UsersController.getUserByID', 'user not found')
         return res.status(404).json({
           success: false,
-          message: '❌ Can not find user'
+          message: '❌ Cannot find user'
         })
       }
     } catch (err) {
@@ -137,8 +137,6 @@ module.exports = class UsersController {
     }
   }
 
-  static async resetPassword () {}
-
   static async updateUser (req, res) {
     try {
       const validRequest = updateValidation(req.body)
@@ -163,7 +161,6 @@ module.exports = class UsersController {
   }
 
   static async deleteUser (req, res) {
-    //
     try {
       const result = await UsersDAO.deleteUser(req.user._id)
 
@@ -178,6 +175,105 @@ module.exports = class UsersController {
         message: `❌ ${err.message}`
       })
     }
+  }
+
+  static async addPetToWishList (req, res) {
+    const { currentUser, pet } = req
+
+    try {
+      const result = await UsersDAO.addPetToWishList(currentUser._id, pet._id)
+
+      if (result.modifiedCount === 0) {
+        logger('UsersController.addPetToWishList', '❌ Pet already exists')
+        return res.status(409).json({
+          success: false,
+          message: '❌ Pet already exists'
+        })
+      }
+
+      return res.status(200).json({
+        succes: true,
+        user: currentUser.email,
+        petAddedToWishList: pet.name
+      })
+    } catch (err) {
+      logger('UsersController.addPetToWishList', err.message)
+      return res.status(500).json({
+        success: false,
+        message: `❌ ${err.message}`
+      })
+    }
+  }
+
+  static async removePetFromWishList (req, res) {
+    const { currentUser, pet } = req
+
+    try {
+      const result = await UsersDAO.removePetFromWishList(
+        currentUser._id,
+        pet._id
+      )
+
+      if (result.modifiedCount === 0) {
+        logger(
+          'UsersController.removePetFromWishList',
+          '❌ Pet was not in wish list'
+        )
+        return res.status(404).json({
+          success: false,
+          message: '❌ Pet was not in wish list'
+        })
+      }
+
+      return res.status(200).json({
+        succes: true,
+        user: currentUser.email,
+        petRemovedFromWishList: pet.name
+      })
+    } catch (err) {
+      logger('UsersController.removePetFromWishList', err.message)
+      return res.status(500).json({
+        success: false,
+        message: `❌ ${err.message}`
+      })
+    }
+  }
+
+  static async getPetsByUser (req, res, next) {
+    const { user } = req
+
+    // try {
+    //   const result = await 
+    // } catch (err) {
+      
+    // }
+    
+    if (user.petsWishList.length === 0) {
+      res.status(404).json({
+        success: false,
+        message: '❌ No pets were found in user wish-list'
+      })
+    }
+
+    req.petsIDs = user.petsWishList
+    next()
+  }
+
+  static async resetPassword () {}
+
+  static async isAdmin (req, res, next) {
+    const { currentUser } = req
+    const fullUserData = await UsersDAO.getUserByID(currentUser._id)
+    if (fullUserData.permission !== 'admin') {
+      logger('UserController.isAdmin', '❌ Not admin - access denied')
+      return res.status(401).json({
+        success: false,
+        message: `❌ Not admin - access denied`
+      })
+    }
+
+    logger('UserController.isAdmin', '✅ Admin permissins verified')
+    next()
   }
 
   static async makeAdmin (req, res) {}

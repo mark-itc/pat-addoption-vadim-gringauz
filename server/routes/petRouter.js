@@ -2,38 +2,74 @@ const express = require('express')
 const router = express.Router()
 
 const PetsController = require('../controllers/PetsController')
+const UsersController = require('../controllers/UsersController')
 
 const authMiddleware = require('../middlewares/authMiddleware')
 
+//! PUBLIC ROUTES:
 router.post('/new', PetsController.createPet)
 router.get('/:id', PetsController.getPetByID, PetsController.getOnePet)
 router.get('/', PetsController.getPets)
-router.post('/:id/adopt', authMiddleware, PetsController.getPetByID, PetsController.adopt)
-router.delete('/:id/adopt', authMiddleware, PetsController.getPetByID, PetsController.clearStatus)
+router.get(
+  '/user/:id',
+  UsersController.getUserByID,
+  UsersController.getPetsByUser,
+  PetsController.getPets
+)
 
+//! PROTECTED TO SIGNED IN USERS:
+router.post(
+  '/:id/adopt',
+  authMiddleware,
+  PetsController.getPetByID,
+  PetsController.adopt
+)
+router.delete(
+  '/:id/adopt',
+  authMiddleware,
+  PetsController.getPetByID,
+  PetsController.clearStatus
+)
+router.post(
+  '/:id/foster',
+  authMiddleware,
+  PetsController.getPetByID,
+  PetsController.adopt
+)
+router.delete(
+  '/:id/foster',
+  authMiddleware,
+  PetsController.getPetByID,
+  PetsController.clearStatus
+)
+router.post(
+  '/:id/save',
+  authMiddleware,
+  PetsController.getPetByID,
+  UsersController.addPetToWishList
+)
 
+router.delete(
+  '/:id/save',
+  authMiddleware,
+  PetsController.getPetByID,
+  UsersController.removePetFromWishList
+)
 
-router.put('/:id', (req, res) => {
-  // update a specific pet
-})
-
-
-
-
-
-router.post('/:id/save', (req, res) => {
-  //! protected to logged in users!!!
-  // Save pet to wishlist
-})
-
-router.delete('/:id/save', (req, res) => {
-  //! protected to logged in users!!!
-  // Remove pet from wishlist
-})
-
-router.delete('/:id', (req, res) => {
-  //! protected to admin!!!
-  // delete a specific pet
-})
+//! PROTECTED TO ADMIN:
+router.patch(
+  '/:id',
+  authMiddleware,
+  UsersController.isAdmin,
+  PetsController.getPetByID,
+  PetsController.updatePet
+)
+router.delete(
+  '/:id',
+  authMiddleware,
+  UsersController.isAdmin,
+  PetsController.getPetByID,
+  PetsController.markAsDeleted
+)
 
 module.exports = router

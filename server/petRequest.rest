@@ -27,3 +27,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQwM
 #! CLEAR ADOPTION
 DELETE  http://localhost:3005/pet/6403b9d433bbd133654664ea/adopt
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQwMzQ2YzBlYzk0ZGEzZDhjMzU2OTFhIiwiZW1haWwiOiJsdWthNzdAZ21haWwuY29tIiwiaWF0IjoxNjc3OTczMDI0fQ.SOq2HId_yOotyG17JXwPpORiIjU5M5E94QXhOYHX3x4
+
+###
+#! UPDATE PET 
+PATCH  http://localhost:3005/pet/6403b9d933bbd133654664ec
+Content-Type: application/json
+
+{
+    "name": "Mocha",
+    "size": "L"
+}
+
+###
+#! SAVE PET TO SIGNEDIN USER'S WISH-LIST
+POST http://localhost:3005/pet/6403b92233bbd133654664e8/save
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDA0ZmM3MTE1NzcxZjI0Y2M1Y2ViYjQiLCJlbWFpbCI6Imx1a2E3NzExQGdtYWlsLmNvbSIsImlhdCI6MTY3ODA1MDYyNX0.hSyh93jsCuC1IS7P_55lDvokq5RdYo7OwpdiUh9KALs
+
+###
+#! REMOVE PET FROM SIGNEDIN USER'S WISH-LIST
+DELETE  http://localhost:3005/pet/6403b92233bbd133654664e8/save
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDA0ZmM3MTE1NzcxZjI0Y2M1Y2ViYjQiLCJlbWFpbCI6Imx1a2E3NzExQGdtYWlsLmNvbSIsImlhdCI6MTY3ODA1MDYyNX0.hSyh93jsCuC1IS7P_55lDvokq5RdYo7OwpdiUh9KALs
