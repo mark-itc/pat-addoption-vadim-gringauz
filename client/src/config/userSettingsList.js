@@ -4,7 +4,7 @@ const userSettings = [
         onClick: () => {
             console.log('navigate to Profile page')
         },
-        path: '/profile'
+        path: '/profile',
     },
     // {
     //     name: 'Account',

@@ -1,0 +1,29 @@
+#! NEW PET
+POST http://localhost:3005/pet/new
+Content-Type: application/json
+
+{
+    "name": "panda",
+    "type": "cat",
+    "breed": "mixed",
+    "size": "xl",
+    "color": "black"
+}
+
+###
+#! GET PET BY ID 
+GET http://localhost:3005/pet/6403b9d433bbd133654664ea
+
+###
+#! GET PETS (SEARCH)
+GET http://localhost:3005/pet/?size=s
+
+###
+#! "ADOPT" PET (BY ID) 
+POST http://localhost:3005/pet/6403b9d433bbd133654664ea/adopt
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQwMzQ2YzBlYzk0ZGEzZDhjMzU2OTFhIiwiZW1haWwiOiJsdWthNzdAZ21haWwuY29tIiwiaWF0IjoxNjc3OTczMDI0fQ.SOq2HId_yOotyG17JXwPpORiIjU5M5E94QXhOYHX3x4
+
+###
+#! CLEAR ADOPTION
+DELETE  http://localhost:3005/pet/6403b9d433bbd133654664ea/adopt
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQwMzQ2YzBlYzk0ZGEzZDhjMzU2OTFhIiwiZW1haWwiOiJsdWthNzdAZ21haWwuY29tIiwiaWF0IjoxNjc3OTczMDI0fQ.SOq2HId_yOotyG17JXwPpORiIjU5M5E94QXhOYHX3x4

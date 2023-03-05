@@ -4,6 +4,7 @@ const pages = [
       onClick: () => {
       },
       path: '/',
+      permission: 'all',
     },
     {
       name: 'About',
@@ -11,14 +12,17 @@ const pages = [
         console.log('navigate to About page')
       },
       path: '/about',
+      permission: 'all',
       subPages: [
         {
           name: 'About us',
-          path: ''
+          path: '',
+          permission: 'all',
         },
         {
           name: 'Contact us',
-          path: ''
+          path: '',
+          permission: 'all',
         },
       ]
     },
@@ -28,14 +32,17 @@ const pages = [
         console.log('navigate to pets page')
       },
       path: '/pets',
+      permission: 'all',
       subPages: [
         {
           name: 'Dogs',
-          path: '/pets?type=dog'
+          path: '/pets?type=dog',
+          permission: 'all',
         },
         {
           name: 'Cats',
-          path: '/pets?type=cat'
+          path: '/pets?type=cat',
+          permission: 'all',
         },
       ]
     },
@@ -44,7 +51,8 @@ const pages = [
       onClick: () => {
         console.log('navigate to Wish List page')
       },
-      path: '/wish-list'
+      path: '/wish-list',
+    permission: 'user',
     },
   ]
 

@@ -1,15 +1,15 @@
 import React from 'react'
-import { Container, Stack } from '@mui/material'
-import QuickSearch from '../components/QuickSearch'
-import Preview from '../components/welcome/Preview'
-import Articles from '../components/welcome/Articles'
-import Stats from '../components/welcome/Stats'
+// import { Container, Stack } from '@mui/material'
+// import QuickSearch from '../components/QuickSearch'
+// import Preview from '../components/welcome/Preview'
+// import Articles from '../components/welcome/Articles'
+// import Stats from '../components/welcome/Stats'
 
-function WelcomePage() {
+function HomePage() {
   return (
     <>
-      <div>Welcome </div>
-      <Container>
+      <div>Home page </div>
+      {/* <Container>
         <Stack
           alignItems={'center'}
           mt={5}
@@ -22,9 +22,9 @@ function WelcomePage() {
           <Articles />
           <Stats />
         </Stack>
-      </Container>
+      </Container> */}
     </>
   )
 }
 
-export default WelcomePage
+export default HomePage
