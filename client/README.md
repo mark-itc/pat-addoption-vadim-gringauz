@@ -1,4 +1,4 @@
-## Final Project! Pet Adoption app - Frontend (v0.2.5)
+## Final Project! Pet Adoption app - Frontend (v0.3.0)
 # Planning stage - 
 
 Framework: React.js

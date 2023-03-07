@@ -1,11 +1,13 @@
 require('dotenv').config()
 const express = require('express')
+const cors = require('cors');
 const { initDB } = require('./models/init')
 
 initDB()
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 const userRoute = require('./routes/userRouter')
 const petRoute = require('./routes/petRouter')
