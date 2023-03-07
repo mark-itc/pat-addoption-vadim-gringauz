@@ -1,7 +1,7 @@
-// require('dotenv').config()
 const sha256 = require('js-sha256')
 const jwt = require('jsonwebtoken')
 const UsersDAO = require('../models/UsersDAO')
+const cookieSettings = require('../config/cookieSettings')
 const logger = require('../utils/logger')
 const {
   signInValidation,
@@ -58,6 +58,8 @@ module.exports = class UsersController {
 
   static async signIn (req, res) {
     try {
+      res.clearCookie('cookie-session')
+
       const validRequest = signInValidation(req.body)
       if (!validRequest)
         return res.status(400).json({
@@ -67,13 +69,13 @@ module.exports = class UsersController {
 
       const user = await UsersDAO.getUserByEmail(req.body.email)
       if (!user || user.password != sha256(req.body.password)) {
-        return res.status(400).json({
+        return res.status(401).json({
           success: false,
           message: '❌ Wrong username or password'
         })
       }
 
-      //! EMAIL + PASSWORD ARE VALID AND APPROVED => CREATE TOKEN
+      //! EMAIL + PASSWORD ARE VALID AND APPROVED => CREATE TOKEN AND SET A COOKIE
       const accessToken = jwt.sign(
         {
           _id: user._id,
@@ -82,9 +84,12 @@ module.exports = class UsersController {
         process.env.ACCESS_TOKEN_SECRET
       )
 
+      res.cookie("cookie-session", accessToken, cookieSettings)
       res.status(200).json({
-        accessToken: accessToken
+        // accessToken: accessToken,
+        signedUser: user,
       })
+
     } catch (err) {
       logger('UsersController.signIn', `Error in UsersController.Login ${err}`)
       return res.status(500).json({
@@ -94,7 +99,18 @@ module.exports = class UsersController {
     }
   }
 
-  static async signOut (req, res) {}
+  static async signOut (req, res) {
+    try {
+      res.clearCookie('cookie-session', { expires: new Date(0) })
+      res.redirect('/signin')
+      res.status(200).json({
+        success: true,
+        message: '✅ User signed out successfully'
+      })
+    } catch (err) {
+
+    }
+  }
 
   // DB RELATED
   static async getUserByID (req, res, next) {

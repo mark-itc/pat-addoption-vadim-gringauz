@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNavigate } from 'react-router'
+// import { useNavigate } from 'react-router'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -11,12 +11,11 @@ import Box from '@mui/material/Box'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import authenticator from '../../helpers/authenticator'
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../features/auth/authSlice'
 
-function SignInForm () {
-  const navigate = useNavigate()
+function SignInForm() {
+  // const navigate = useNavigate()
   const dispatch = useDispatch();
 
 
@@ -28,13 +27,11 @@ function SignInForm () {
       password: data.get('password')
     })
 
-    authenticator.signIn({
+    dispatch(signIn({
       email: data.get('email'),
       password: data.get('password')
-    })
-
-    dispatch(signIn())
-    navigate('/')
+    }))
+    // navigate('/')
   }
 
   return (
@@ -74,10 +71,10 @@ function SignInForm () {
             id='password'
             autoComplete='current-password'
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value='remember' color='primary' />}
             label='Remember me'
-          />
+          /> */}
           <Button
             type='submit'
             fullWidth

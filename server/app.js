@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors');
 const { initDB } = require('./models/init')
+const port = process.env.PORT
 
 initDB()
 const app = express()
@@ -17,6 +18,6 @@ app.use('/user', userRoute)
 app.use('/pet', petRoute)
 app.use('/admin', adminRoute)
 
-app.listen(3005, () => {
-  console.log('🟢 Server is running on port 3005')
+app.listen(port, () => {
+  console.log(`🟢 Server is running on port ${port}`)
 })

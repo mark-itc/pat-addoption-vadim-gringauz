@@ -30,7 +30,7 @@ router.patch(
   UsersController.getUserByID,
   UsersController.makeAdmin
 )
-router.patch(
+router.delete(
   '/:id/make-admin',
   authMiddleware,
   UsersController.isAdmin,
