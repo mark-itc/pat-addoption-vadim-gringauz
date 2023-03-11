@@ -10,7 +10,7 @@ function TopMenu ({ pages }) {
     <Stack sx={{ position: 'relative' }}>
       <Stack direction={'row'} spacing={2}>
         {pages.map(page => (
-          (page.permission === 'user' && !isSignedIn) || <TopMenuItem page={page} isSignedIn={isSignedIn} />
+          (page.permission === 'user' && !isSignedIn) || <TopMenuItem key={page.name} page={page} isSignedIn={isSignedIn} />
         ))}
       </Stack>
     </Stack>

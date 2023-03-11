@@ -3,8 +3,9 @@ const logger = require('../utils/logger')
 
 async function authMiddleware (req, res, next) {
   //
+  console.log('auth')
   try {
-    const authHeader = req.headers['authorization']
+    const authHeader = req.headers.authorization
     const token = authHeader && authHeader.split(' ')[1]
     if (token == null) {
       logger('authMiddleware', 'no tokken')
@@ -20,6 +21,7 @@ async function authMiddleware (req, res, next) {
     //! Token is valid
     logger('authMiddleware', '✅ Tokken valid')
     req.currentUser = tokenData
+    req.token = token
     next()
   } catch (err) {
     //TODO complete msg

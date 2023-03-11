@@ -13,18 +13,18 @@ const pages = [
       },
       path: '/about',
       permission: 'all',
-      subPages: [
-        {
-          name: 'About us',
-          path: '',
-          permission: 'all',
-        },
-        {
-          name: 'Contact us',
-          path: '',
-          permission: 'all',
-        },
-      ]
+      // subPages: [
+      //   {
+      //     name: 'About us',
+      //     path: '',
+      //     permission: 'all',
+      //   },
+      //   {
+      //     name: 'Contact us',
+      //     path: '',
+      //     permission: 'all',
+      //   },
+      // ]
     },
     {
       name: 'Our Pets',
@@ -34,6 +34,11 @@ const pages = [
       path: '/pets',
       permission: 'all',
       subPages: [
+        {
+          name: 'all',
+          path: '/pets',
+          permission: 'all',
+        },
         {
           name: 'Dogs',
           path: '/pets?type=dog',

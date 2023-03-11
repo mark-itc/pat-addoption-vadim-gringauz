@@ -11,6 +11,7 @@ import WishList from '../pages/WishList'
 import ProfileSettings from '../pages/ProfileSettings'
 import Article from '../pages/Article'
 import SignOutTemp from '../pages/SignOutTemp'
+import RemeberSignedUser from '../helpers/RemeberSignedUser'
 
 const router = createBrowserRouter([
   {
@@ -35,38 +36,37 @@ const router = createBrowserRouter([
       },
       {
         path: '/why-adopt-article',
-        element: <Article />,
-        action: () => {
-          // scrollBy(0, 0)
-          console.log('12134343')
-        },
+        element: <Article />
       },
       {
-        element: <PrivateRoute />,
+        element: <RemeberSignedUser />,
         children: [
           {
-            path: '/',
-            element: <HomePage />
-          },
+            element: <PrivateRoute />,
+            children: [
+              {
+                path: '/',
+                element: <HomePage />
+              },
 
-          {
-            path: '/wish-list',
-            element: <WishList />
-          },
-          {
-            path: '/profile',
-            element: <ProfileSettings />
-          },
-          {
-            path: '/signout',
-            element: <SignOutTemp />
-          },
+              {
+                path: '/wish-list',
+                element: <WishList />
+              },
+              {
+                path: '/profile',
+                element: <ProfileSettings />
+              },
+              {
+                path: '/signout',
+                element: <SignOutTemp />
+              }
+            ]
+          }
         ]
-      },
-
+      }
     ]
   }
 ])
-
 
 export default router

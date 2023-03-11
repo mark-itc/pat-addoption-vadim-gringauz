@@ -5,10 +5,14 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   firstName: { type: String, required: false, default: null },
   lastName: { type: String, required: false, default: null },
+  avatar: { type: String, required: false, default: null },
   phone: { type: String, required: false, default: null },
-  createdAt: { type: String, required: true, default: Date.now },
+  createdAt: { type: Date, required: true, default: Date.now },
   permission: { type: String, default: 'user' },
-  petsWishList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pet' }]
+  petsWishList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pet' }],
+  settings: {
+    darkMode: { type: Boolean, required: true, default: false }
+  }
 })
 
 const User = mongoose.model('User', userSchema)

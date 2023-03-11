@@ -1,4 +1,3 @@
-// require('dotenv').config()
 const sha256 = require('js-sha256')
 const jwt = require('jsonwebtoken')
 const UsersDAO = require('../models/UsersDAO')
@@ -16,18 +15,22 @@ module.exports = class UsersController {
     try {
       const validRequest = signUpValidation(req.body)
       if (!validRequest)
-        return res.status(400).json({
-          success: false,
-          message: 'Please fill all fields'
-        })
-
+      return res.status(400).json({
+        success: false,
+        message: 'Please fill all fields'
+      })
+      
       const newUserObject = {
         email: req.body.email,
         password: req.body.password,
         passwordVerify: req.body.passwordVerify,
         firstName: req.body.firstName ?? null,
         lastName: req.body.lastName ?? null,
-        phone: req.body.phone ?? null
+        avatar: null,
+        phone: req.body.phone ?? null,
+        settings: {
+          darkMode: false
+        }
       }
       //TODO:
       // const existingUser = await UsersDAO.getUserByUsername(userObject.username)
@@ -58,6 +61,8 @@ module.exports = class UsersController {
 
   static async signIn (req, res) {
     try {
+      res.clearCookie('cookie-session')
+
       const validRequest = signInValidation(req.body)
       if (!validRequest)
         return res.status(400).json({
@@ -67,13 +72,13 @@ module.exports = class UsersController {
 
       const user = await UsersDAO.getUserByEmail(req.body.email)
       if (!user || user.password != sha256(req.body.password)) {
-        return res.status(400).json({
+        return res.status(401).json({
           success: false,
           message: '❌ Wrong username or password'
         })
       }
 
-      //! EMAIL + PASSWORD ARE VALID AND APPROVED => CREATE TOKEN
+      //! EMAIL + PASSWORD ARE VALID AND APPROVED => CREATE TOKEN AND SET A COOKIE
       const accessToken = jwt.sign(
         {
           _id: user._id,
@@ -83,7 +88,19 @@ module.exports = class UsersController {
       )
 
       res.status(200).json({
-        accessToken: accessToken
+        accessToken: accessToken,
+        signedUser: {
+          _id: user._id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          avatar: user.avatar,
+          phone: user.phone,
+          createdAt: user.createdAt,
+          permission: user.permission,
+          petsWishList: user.petsWishList,
+          settings: user.settings
+        }
       })
     } catch (err) {
       logger('UsersController.signIn', `Error in UsersController.Login ${err}`)
@@ -94,7 +111,56 @@ module.exports = class UsersController {
     }
   }
 
-  static async signOut (req, res) {}
+  static async refresh (req, res) {
+    console.log('refreshing')
+    console.log(req.currentUser)
+
+    try {
+      const user = await UsersDAO.getUserByID(req.currentUser._id)
+      console.log(user)
+      if (!user) {
+        logger('UsersController.refresh', 'user not found')
+        return res.status(404).json({
+          success: false,
+          message: '❌ Cannot find user'
+        })
+      }
+      console.log(req.token)
+      res.status(200).json({
+        accessToken: req.token,
+        signedUser: {
+          _id: user._id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          avatar: user.avatar,
+          phone: user.phone,
+          createdAt: user.createdAt,
+          permission: user.permission,
+          petsWishList: user.petsWishList,
+          settings: user.settings
+        }
+      })
+    } catch (err) {
+      logger(
+        'UsersController.refresh',
+        `Error in UsersController.refresh ${err}`
+      )
+      return res.status(500).json({
+        success: false,
+        message: '❌ Unknown error'
+      })
+    }
+  }
+
+  static async signOut (req, res) {
+    try {
+      res.status(200).json({
+        success: true,
+        message: '✅ User signed out successfully'
+      })
+    } catch (err) {}
+  }
 
   // DB RELATED
   static async getUserByID (req, res, next) {
@@ -242,12 +308,8 @@ module.exports = class UsersController {
   static async getPetsByUser (req, res, next) {
     const { user } = req
 
-    // try {
-    //   const result = await 
-    // } catch (err) {
-      
-    // }
-    
+
+
     if (user.petsWishList.length === 0) {
       res.status(404).json({
         success: false,

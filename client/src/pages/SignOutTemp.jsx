@@ -1,7 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { CircularProgress, Container } from '@mui/material'
-import authenticator from '../helpers/authenticator'
 import { useDispatch } from 'react-redux';
 import { signOut } from '../features/auth/authSlice';
 
@@ -10,7 +9,6 @@ function SignOutTemp() {
 
 
     useEffect(() => {
-        authenticator.signOut()
         dispatch(signOut())
     }, [dispatch])
 

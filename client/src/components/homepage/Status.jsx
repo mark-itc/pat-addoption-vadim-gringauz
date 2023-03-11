@@ -6,7 +6,7 @@ function Status () {
     <>
       <div>You have X adoption requests</div>
       <div>You have Y foster requests</div>
-      <Button variant='contained'>View our pets</Button>
+      <Button variant='contained' sx={{ width: '20rem' }} >View our pets</Button>
     </>
   )
 }
