@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
-const cors = require('cors');
+const cors = require('cors')
+const cookieParser = require('cookie-parser')
 const { initDB } = require('./models/init')
 const port = process.env.PORT
 
@@ -8,7 +9,8 @@ initDB()
 const app = express()
 
 app.use(express.json())
-app.use(cors())
+app.use(cookieParser())
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
 
 const userRoute = require('./routes/userRouter')
 const petRoute = require('./routes/petRouter')

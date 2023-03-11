@@ -17,7 +17,7 @@ const petSchema = new mongoose.Schema({
   hypoallergenic: { type: Boolean, required: false, default: false },
   dietaryRestrictions: { type: String, required: false, default: null },
   image: { type: String },
-  createdAt: { type: String, required: true, default: Date.now },
+  createdAt: { type: Date, required: true, default: Date.now },
   deleted: { type: Boolean, default: false }
 })
 

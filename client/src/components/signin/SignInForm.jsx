@@ -1,37 +1,42 @@
 import * as React from 'react'
-// import { useNavigate } from 'react-router'
+import { useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
 import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import { useDispatch } from 'react-redux';
-import { signIn } from '../../features/auth/authSlice'
+import ErrorAlert from './ErrorAlert'
+import AuthAPI from '../../API/AuthAPI'
+import useAuth from '../../hooks/useAuth'
+import useToken from '../../hooks/useToken'
 
-function SignInForm() {
-  // const navigate = useNavigate()
-  const dispatch = useDispatch();
+function SignInForm () {
+  const [openAlert, setOpenAlert] = useState(false)
+  const [message, setMessage] = useState('')
 
+  const { setAuth } = useAuth()
+  const { saveToken } = useToken()
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-    console.log({
+    const credentials = {
       email: data.get('email'),
       password: data.get('password')
-    })
+    }
+    const result = await AuthAPI.signIn(credentials)
 
-    dispatch(signIn({
-      email: data.get('email'),
-      password: data.get('password')
-    }))
-    // navigate('/')
+    if (!result.accessToken) {
+      setOpenAlert(true)
+      setMessage('Wrong email or password')
+    }
+
+    setAuth(result.signedUser, result.accessToken)
+    saveToken(result.accessToken)
   }
 
   return (
@@ -92,6 +97,7 @@ function SignInForm() {
           </Grid>
         </Box>
       </Box>
+      <ErrorAlert openAlert={openAlert} setOpenAlert={setOpenAlert} message={message} />
     </Container>
   )
 }

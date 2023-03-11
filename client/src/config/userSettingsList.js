@@ -19,13 +19,7 @@ const userSettings = [
         },
         path: '/dashboard'
     },
-    {
-        name: 'Sign out',
-        onClick: () => {
-            console.log('Logout')
-        },
-        path: '/signout'
-    }
+
 ]
 
 export default userSettings

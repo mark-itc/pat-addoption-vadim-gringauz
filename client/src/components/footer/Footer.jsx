@@ -30,7 +30,7 @@ function Footer () {
               sx={{ display: { xs: 'none', md: 'flex' } }}
             >
               {pages.map(page => (
-                <Stack>
+                <Stack key={page.name}>
                   <Button
                     size='small'
                     key={page.name}

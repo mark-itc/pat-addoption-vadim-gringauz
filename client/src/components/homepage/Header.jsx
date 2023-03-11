@@ -1,13 +1,14 @@
 import React from 'react'
 import { Typography } from '@mui/material'
-import { useSelector } from 'react-redux'
+import useAuth from '../../hooks/useAuth'
 
 function Header () {
-  const { signedUser } = useSelector(state => state.auth)
+  const { auth } = useAuth()
+  const {signedUser} = auth
 
   return (
     <Typography>
-      Welcome {signedUser.firstName} {signedUser.lastName}
+      Welcome {signedUser?.firstName} {signedUser?.lastName}
     </Typography>
   )
 }

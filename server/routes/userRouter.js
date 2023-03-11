@@ -7,14 +7,14 @@ const authMiddleware = require('../middlewares/authMiddleware')
 //! PUBLIC ROUTES:
 router.post('/signup', UsersController.signUp)
 router.post('/signin', UsersController.signIn)
-
-// TODO
-router.delete('/signout', (req, res) => {
-  // log out
-})
+router.delete('/signout', UsersController.signOut)
 
 router.get('/:id', UsersController.getUserByID, UsersController.getOneUser)
 router.patch('/:id', UsersController.getUserByID, UsersController.updateUser)
+
+//! PROTECTED TO SIGNED USER:
+router.post('/refresh',authMiddleware, UsersController.refresh)
+
 
 //! PROTECTED TO ADMIN:
 router.get(

@@ -1,35 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit';
-import AuthAPI from '../../helpers/AuthAPI';
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    isSignedIn: false,
-    signedUser: {}
-    // signedUser: {
-    //     id: '1234567',
-    //     email: 'l77d@gmail.com',
-    //     firstName: 'Luka',
-    //     lastName: 'Doncic',
-    //     avatar: 'https://ml8dx8xgrqnj.i.optimole.com/w:auto/h:auto/q:mauto/f:avif/https://www.stokastic.com/wp-content/uploads/2022/05/LUka-Doncic-Mavericks-NBA-DFS-Picks-DraftKings-Best-NBA-Bets-Today-Player-Props.jpg',
-    //     lastSignedin: new Date(),
-
-    // }
-};
+  isSignedIn: false,
+  accessToken: null,
+  signedUser: null
+}
 
 export const authSlice = createSlice({
-    name: 'auth',
-    initialState,
-    reducers: {
-        async signIn(state, action) {
-            state.signedUser = await AuthAPI.signIn(action.payload)
-            if (state.signedUser._id) state.isSignedIn = true;
-        },
-        signOut(state) {
-            state.isSignedIn = false;
-            state.signedUser = {}
-        },
+  name: 'auth',
+  initialState,
+  reducers: {
+    signIn: (state, action) => {
+      return {
+        ...state,
+        isSignedIn: true,
+        accessToken: action.payload.accessToken,
+        signedUser: action.payload.signedUser
+      }
     },
-});
+    signOut (state) {
+      return {
+        ...state,
+        isSignedIn: false,
+        accessToken: null,
+        signedUser: {}
+      }
+    }
+  }
+})
 
-export const { signIn, signOut } = authSlice.actions;
+export const { signIn, signOut } = authSlice.actions
 
-export default authSlice.reducer;
+export default authSlice.reducer

@@ -16,18 +16,23 @@ module.exports = class UsersController {
     try {
       const validRequest = signUpValidation(req.body)
       if (!validRequest)
-        return res.status(400).json({
-          success: false,
-          message: 'Please fill all fields'
-        })
-
+      return res.status(400).json({
+        success: false,
+        message: 'Please fill all fields'
+      })
+      
+      console.log('here')
       const newUserObject = {
         email: req.body.email,
         password: req.body.password,
         passwordVerify: req.body.passwordVerify,
         firstName: req.body.firstName ?? null,
         lastName: req.body.lastName ?? null,
-        phone: req.body.phone ?? null
+        avatar: null,
+        phone: req.body.phone ?? null,
+        settings: {
+          darkMode: false
+        }
       }
       //TODO:
       // const existingUser = await UsersDAO.getUserByUsername(userObject.username)
@@ -84,12 +89,22 @@ module.exports = class UsersController {
         process.env.ACCESS_TOKEN_SECRET
       )
 
-      res.cookie("cookie-session", accessToken, cookieSettings)
+      // res.cookie('cookie-session', accessToken, cookieSettings)
       res.status(200).json({
-        // accessToken: accessToken,
-        signedUser: user,
+        accessToken: accessToken,
+        signedUser: {
+          _id: user._id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          avatar: user.avatar,
+          phone: user.phone,
+          createdAt: user.createdAt,
+          permission: user.permission,
+          petsWishList: user.petsWishList,
+          settings: user.settings
+        }
       })
-
     } catch (err) {
       logger('UsersController.signIn', `Error in UsersController.Login ${err}`)
       return res.status(500).json({
@@ -99,17 +114,56 @@ module.exports = class UsersController {
     }
   }
 
+  static async refresh (req, res) {
+    console.log('refreshing')
+    console.log(req.currentUser)
+
+    try {
+      const user = await UsersDAO.getUserByID(req.currentUser._id)
+      console.log(user)
+      if (!user) {
+        logger('UsersController.refresh', 'user not found')
+        return res.status(404).json({
+          success: false,
+          message: '❌ Cannot find user'
+        })
+      }
+      console.log(req.token)
+      res.status(200).json({
+        accessToken: req.token,
+        signedUser: {
+          _id: user._id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          avatar: user.avatar,
+          phone: user.phone,
+          createdAt: user.createdAt,
+          permission: user.permission,
+          petsWishList: user.petsWishList,
+          settings: user.settings
+        }
+      })
+    } catch (err) {
+      logger(
+        'UsersController.refresh',
+        `Error in UsersController.refresh ${err}`
+      )
+      return res.status(500).json({
+        success: false,
+        message: '❌ Unknown error'
+      })
+    }
+  }
+
   static async signOut (req, res) {
     try {
-      res.clearCookie('cookie-session', { expires: new Date(0) })
-      res.redirect('/signin')
+      // res.redirect('/signin')
       res.status(200).json({
         success: true,
         message: '✅ User signed out successfully'
       })
-    } catch (err) {
-
-    }
+    } catch (err) {}
   }
 
   // DB RELATED
@@ -259,11 +313,11 @@ module.exports = class UsersController {
     const { user } = req
 
     // try {
-    //   const result = await 
+    //   const result = await
     // } catch (err) {
-      
+
     // }
-    
+
     if (user.petsWishList.length === 0) {
       res.status(404).json({
         success: false,
