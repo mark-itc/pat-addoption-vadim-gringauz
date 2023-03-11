@@ -1,5 +1,5 @@
 # Final Project :collision: Pet Adoption web-app - "WE🧡PETS" <img src='./logo.png' width=50px />
-Deployed app (link)
+ :mega: [Deployed app](https://wepets.onrender.com)
 ## Summary
 ### :computer: FRONTEND
  * **UI Framework**: React (CRA)
