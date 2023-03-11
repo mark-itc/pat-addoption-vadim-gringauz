@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Container, Typography } from '@mui/material'
 
 function ProfileSettings() {
-  const { isSignedIn, signedUser } = useSelector((state) => state.auth)
+  const { isSignedIn, signedUser } = useSelector((state) => state.auth) // eslint-disable-line
 
   return (
     <Container maxWidth='lg'>

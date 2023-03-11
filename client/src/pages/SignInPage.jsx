@@ -22,7 +22,7 @@ function SignInPage () {
     if (auth.isSignedIn === true) {
       navigate('/')
     }
-  }, [auth])
+  }, [auth]) // eslint-disable-line
 
   return (
     <Container maxWidth={'md'}>

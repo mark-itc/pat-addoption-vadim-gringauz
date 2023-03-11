@@ -30,7 +30,7 @@ function RemeberSignedUser () {
     }
 
     !auth.accessToken ? verifyToken() : setIsLoading(false)
-  }, [])
+  }, []) // eslint-disable-line
 
   useEffect(() => {
     if (auth.signedUser !== null && auth.signedUser !== undefined) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Menu, MenuItem, Box, Fade } from '@mui/material'
+import { Menu, MenuItem, Box } from '@mui/material'
 import { orange } from '@mui/material/colors'
 import styled from 'styled-components'
 import NavMenuButton from './NavMenuButton'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate, redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Box, Stack, Typography, Button } from '@mui/material'
 import img from '../../assets/article-preview.jpg'
 

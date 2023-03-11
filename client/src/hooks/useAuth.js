@@ -9,11 +9,7 @@ export default function useAuth () {
   const { isSignedIn, signedUser, accessToken } = useSelector(
     state => state.auth
   )
-  let auth = { isSignedIn, signedUser, accessToken }
-
-  useEffect(() => {
-    auth = { isSignedIn, signedUser, accessToken }
-  }, [isSignedIn, signedUser, accessToken])
+  const auth = { isSignedIn, signedUser, accessToken }
 
   const setAuth = (signedUser, accessToken) => {
     return dispatch(signIn({ signedUser, accessToken }))

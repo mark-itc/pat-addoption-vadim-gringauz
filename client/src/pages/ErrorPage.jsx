@@ -22,7 +22,7 @@ export default function ErrorPage () {
         }}
       >
         <Typography color={'white'} fontSize={'15rem'}>404</Typography>
-        <img src={img} width={'60%'} />
+        <img src={img} width={'60%'} alt='error404' />
       </Stack>
     </Box>
   )
