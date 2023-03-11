@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { signIn } from '../features/auth/authSlice'
