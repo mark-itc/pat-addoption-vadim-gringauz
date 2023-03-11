@@ -1,6 +1,5 @@
 import axios from '../config/axios'
-// const serverURL = process.env.SERVER_URL
-const serverURL = 'http://localhost:3005'
+const serverURL = process.env.REACT_APP_SERVER_URL
 
 class AuthAPI {
   static async signUp (newUserData) {

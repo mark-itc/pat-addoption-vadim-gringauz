@@ -1,7 +1,6 @@
 const sha256 = require('js-sha256')
 const jwt = require('jsonwebtoken')
 const UsersDAO = require('../models/UsersDAO')
-const cookieSettings = require('../config/cookieSettings')
 const logger = require('../utils/logger')
 const {
   signInValidation,
@@ -21,7 +20,6 @@ module.exports = class UsersController {
         message: 'Please fill all fields'
       })
       
-      console.log('here')
       const newUserObject = {
         email: req.body.email,
         password: req.body.password,
@@ -89,7 +87,6 @@ module.exports = class UsersController {
         process.env.ACCESS_TOKEN_SECRET
       )
 
-      // res.cookie('cookie-session', accessToken, cookieSettings)
       res.status(200).json({
         accessToken: accessToken,
         signedUser: {
@@ -158,7 +155,6 @@ module.exports = class UsersController {
 
   static async signOut (req, res) {
     try {
-      // res.redirect('/signin')
       res.status(200).json({
         success: true,
         message: '✅ User signed out successfully'
@@ -312,11 +308,7 @@ module.exports = class UsersController {
   static async getPetsByUser (req, res, next) {
     const { user } = req
 
-    // try {
-    //   const result = await
-    // } catch (err) {
 
-    // }
 
     if (user.petsWishList.length === 0) {
       res.status(404).json({

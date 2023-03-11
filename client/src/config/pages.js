@@ -35,6 +35,11 @@ const pages = [
       permission: 'all',
       subPages: [
         {
+          name: 'all',
+          path: '/pets',
+          permission: 'all',
+        },
+        {
           name: 'Dogs',
           path: '/pets?type=dog',
           permission: 'all',

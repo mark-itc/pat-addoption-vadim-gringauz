@@ -15,10 +15,10 @@ Deployed app (link)
 ## :clipboard: Stages
 ### 1. **Frontend**: Basic UI without bussiness logic :white_check_mark:
 ### 2. **Backend**: MVC Structure + write all endpoints/routes :white_check_mark:
-### 3. **Backend**: Write the controllers
-### 3. **Backend**: Connect to DB and build the models
-### 3. **Backend**: Write all routes
-### 4. **Frontend**: Finish UI + bussiness logic
+### 3. **Backend**: Write the controllers :white_check_mark:
+### 3. **Backend**: Connect to DB and build the models :white_check_mark:
+### 3. **Backend**: Write all routes :white_check_mark:
+### 4. **Frontend**: Finish UI + bussiness logic :white_check_mark:
 
 
 

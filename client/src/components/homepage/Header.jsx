@@ -7,7 +7,7 @@ function Header () {
   const {signedUser} = auth
 
   return (
-    <Typography>
+    <Typography variant='h2'>
       Welcome {signedUser?.firstName} {signedUser?.lastName}
     </Typography>
   )
