@@ -21,9 +21,7 @@ function RemeberSignedUser () {
       }
     }
 
-    console.log('auth.accessToken:', auth.accessToken)
     const tokenFromStorage = loadToken()
-    console.log({ tokenFromStorage })
     if (!tokenFromStorage) {
       setIsLoading(false)
       return
