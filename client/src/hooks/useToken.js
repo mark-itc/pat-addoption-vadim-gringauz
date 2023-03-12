@@ -2,7 +2,6 @@ export default function useToken () {
   const TOKEN_KEY = 'access-token'
 
   const saveToken = token => {
-    console.log({token})
     localStorage.setItem(TOKEN_KEY, token)
   }
 
