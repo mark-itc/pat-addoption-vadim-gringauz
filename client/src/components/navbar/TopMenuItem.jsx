@@ -33,6 +33,7 @@ function TopMenuItem ({ page }) {
     setAnchorEl(null)
   }
 
+
   return (
     <Box sx={{}}>
       <NavMenuButton key={page.name} onClick={handleTopMenuItemClick}>
@@ -47,7 +48,7 @@ function TopMenuItem ({ page }) {
             onClose={handleClose}
           >
             {page.subPages.map(subPage => (
-              <MenuItem key={subPage.name} onClick={null}>
+              <MenuItem key={subPage.name} onClick={() => navigate(subPage.path)}>
                 {subPage.name}
               </MenuItem>
             ))}

@@ -3,11 +3,11 @@ POST http://localhost:3005/pet/new
 Content-Type: application/json
 
 {
-    "name": "panda",
-    "type": "cat",
+    "name": "Samuel",
+    "type": "dog",
     "breed": "mixed",
-    "size": "xl",
-    "color": "black"
+    "size": "l",
+    "color": "white"
 }
 
 ###
