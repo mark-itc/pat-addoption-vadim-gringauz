@@ -136,25 +136,46 @@ class PetAPI {
 
   static async reservePetForAdoption (petID, accessToken) {
     try {
-      return
+      const response = await axiosPet.post(`/${petID}/adopt`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      return response.data
+
     } catch (error) {
-      console.error('', error)
+      console.error('Error updating pet data (adopt):', error)
+      return error
     }
   }
 
   static async reservePetForFoster (petID, accessToken) {
     try {
-      return
+      const response = await axiosPet.post(`/${petID}/foster`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      return response.data
+
     } catch (error) {
-      console.error('', error)
+      console.error('Error updating pet data (foster):', error)
+      return error
     }
   }
 
   static async clearReservedStatus (petID, accessToken) {
     try {
-      return
+      const response = await axiosPet.delete(`/${petID}/status`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      return response.data
+
     } catch (error) {
-      console.error('', error)
+      console.error('Error updating pet data (clear status):', error)
+      return error
     }
   }
 

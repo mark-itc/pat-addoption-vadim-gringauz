@@ -24,12 +24,6 @@ router.post(
   PetsController.getPetByID,
   PetsController.adopt
 )
-router.delete(
-  '/:id/adopt',
-  authMiddleware,
-  PetsController.getPetByID,
-  PetsController.clearStatus
-)
 router.post(
   '/:id/foster',
   authMiddleware,
@@ -37,7 +31,7 @@ router.post(
   PetsController.adopt
 )
 router.delete(
-  '/:id/foster',
+  '/:id/status',
   authMiddleware,
   PetsController.getPetByID,
   PetsController.clearStatus
