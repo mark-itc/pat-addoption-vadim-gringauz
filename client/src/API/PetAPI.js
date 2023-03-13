@@ -91,25 +91,46 @@ class PetAPI {
 
   static async addPetToWishList (petID, accessToken) {
     try {
-      return
+      const response = await axiosPet.patch(`/${petID}/save`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      return response.data
+
     } catch (error) {
-      console.error('', error)
+      console.error('Error updating pet data:', error)
+      return error
     }
   }
 
   static async removePetFromWishList (petID, accessToken) {
     try {
-      return
+      const response = await axiosPet.delete(`/${petID}/save`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      return response.data
+
     } catch (error) {
-      console.error('', error)
+      console.error('Error updating pet data:', error)
+      return error
     }
   }
 
   static async getPetsOfUser (userID, accessToken) {
     try {
-      return
+      const response = await axiosPet.get(`/user/${userID}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      return response.data
+
     } catch (error) {
-      console.error('', error)
+      console.error('Error fetching user data (saved pets):', error)
+      return error
     }
   }
 
