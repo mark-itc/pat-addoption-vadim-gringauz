@@ -127,6 +127,7 @@ module.exports = class UsersController {
       }
       console.log(req.token)
       res.status(200).json({
+        success: true,
         accessToken: req.token,
         signedUser: {
           _id: user._id,
@@ -187,13 +188,19 @@ module.exports = class UsersController {
   }
 
   static getOneUser (req, res) {
-    return res.status(200).json({ user: req.user })
+    return res.status(200).json({ 
+      success: true,
+      user: req.user 
+    })
   }
 
   static async getAllUsers (req, res) {
     try {
       const result = await UsersDAO.getAll()
-      return res.status(200).json({ users: result })
+      return res.status(200).json({ 
+        success: true,
+        users: result 
+      })
     } catch (err) {
       logger('UsersController.getAllUsers', err.message)
       return res.status(500).json({

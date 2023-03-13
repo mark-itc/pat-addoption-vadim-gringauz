@@ -30,7 +30,7 @@ module.exports = class PetsController {
       return res.status(201).json({
         succes: true,
         message: '✅ New pet created successfully',
-        newUserID: newPetID
+        newPet: {...newPetObject, _id: newPetID}
       })
     } catch (err) {
       logger('PetsController.createPet', err.message)

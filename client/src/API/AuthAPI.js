@@ -1,11 +1,15 @@
-import axios from '../config/axios'
-const serverURL = process.env.REACT_APP_SERVER_URL
+import axios from 'axios'
+// const serverURL = process.env.REACT_APP_SERVER_URL
+const axiosAuth = axios.create({
+  withCredentials: true,
+  baseURL: process.env.REACT_APP_SERVER_URL + '/user'
+})
 
 class AuthAPI {
   static async signUp (newUserData) {
     try {
-      const response = await axios.post(
-        serverURL + '/user/signup',
+      const response = await axiosAuth.post(
+        '/signup',
         newUserData,
         { withCredentials: true }
       )
@@ -19,7 +23,7 @@ class AuthAPI {
   static async signIn (credentials) {
     const { email, password } = credentials
     try {
-      const response = await axios.post(serverURL + '/user/signin', {
+      const response = await axiosAuth.post('/signin', {
         email,
         password
       })
@@ -32,21 +36,22 @@ class AuthAPI {
 
   static async refresh (accessToken) {
     try {
-      const response = await axios.post(serverURL + '/user/refresh', null, {
+      const response = await axiosAuth.post('/refresh', null, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
       })
       return response.data
+
     } catch (error) {
-      console.log('error:', error.message)
+      console.log('Error refreshing access token', error)
       return error
     }
   }
 
   static async signOut () {
     try {
-      const response = await axios.delete(serverURL + '/user/signout')
+      const response = await axiosAuth.delete('/signout')
       return response
     } catch (error) {
       console.log('error:', error.message)
