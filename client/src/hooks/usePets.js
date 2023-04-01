@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { setPets } from '../features/pets/petsSlice'
+import useAuth from './useAuth'
 import PetAPI from '../API/PetAPI'
 
 const mockPets = [
@@ -40,8 +41,10 @@ const mockPets = [
 ]
 
 export default function usePets () {
+  
   const dispatch = useDispatch()
   const { pets } = useSelector(state => state.pets)
+  const { auth } = useAuth()
 
   useEffect(() => {
 
@@ -83,5 +86,17 @@ export default function usePets () {
     return pet
   }
 
-  return { pets, getFilteredPets, getPetById }
+const createPet = async (newPetData) => {
+  const result = await PetAPI.createPet(newPetData)
+
+  // if (!result.success) {
+  //   return
+  // }
+
+  return result
+  
+}
+
+
+  return { pets, getFilteredPets, getPetById, createPet }
 }

@@ -60,6 +60,7 @@ module.exports = class UsersController {
   }
 
   static async signIn (req, res) {
+    console.log(req.body)
     try {
       res.clearCookie('cookie-session')
 
