@@ -1,0 +1,2 @@
+ - FIX key for map in Footer
+ - REBUILD style for pet card

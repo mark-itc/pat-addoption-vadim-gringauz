@@ -29,40 +29,44 @@ function Footer () {
               spacing={8}
               sx={{ display: { xs: 'none', md: 'flex' } }}
             >
-              {pages.map(page => (
-                <Stack key={page.name}>
-                  <Button
-                    size='small'
-                    key={page.name}
-                    onClick={() => navigate(page.path)}
-                    sx={{
-                      fontSize: '1.5rem',
-                      '&:hover': { textDecoration: 'underline' }
-                    }}
-                  >
-                    {page.name}
-                  </Button>
-                  {page.subPages && (
-                    <Stack>
-                      {page.subPages.map(subPage => (
+              <div>
+                {pages.map(page => (
+                  <Stack key={'footer-' + page.name}>
+                    <Button
+                      size='small'
+                      // key={page.name}
+                      onClick={() => navigate(page.path)}
+                      sx={{
+                        fontSize: '1.5rem',
+                        '&:hover': { textDecoration: 'underline' }
+                      }}
+                    >
+                      {page.name}
+                    </Button>
+                    {page.subPages && (
+                      <Stack>
                         <>
-                          <Button
-                            size='small'
-                            key={subPage.name}
-                            onClick={() => navigate(subPage.path)}
-                            sx={{
-                              fontSize: '1rem',
-                              '&:hover': { textDecoration: 'underline' }
-                            }}
-                          >
-                            {subPage.name}
-                          </Button>
+                          {page.subPages.map(subPage => (
+                            <>
+                              <Button
+                                size='small'
+                                key={'footer-sub-' + subPage.name}
+                                onClick={() => navigate(subPage.path)}
+                                sx={{
+                                  fontSize: '1rem',
+                                  '&:hover': { textDecoration: 'underline' }
+                                }}
+                              >
+                                {subPage.name}
+                              </Button>
+                            </>
+                          ))}
                         </>
-                      ))}
-                    </Stack>
-                  )}
-                </Stack>
-              ))}
+                      </Stack>
+                    )}
+                  </Stack>
+                ))}
+              </div>
             </Stack>
           </Stack>
           <AppInfo />
