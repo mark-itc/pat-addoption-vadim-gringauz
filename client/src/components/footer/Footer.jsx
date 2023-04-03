@@ -1,79 +1,24 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Container, Box, Stack, Button } from '@mui/material'
-import AppInfo from './AppInfo'
-import CreatedWith from './CreatedWith'
-import pages from '../../config/pages'
+import React from "react";
+import { Container, Box, Stack } from "@mui/material";
+import AppInfo from "./AppInfo";
+import FooterBody from "./FooterBody";
 
-function Footer () {
-  const navigate = useNavigate()
-
+function Footer() {
   return (
     <Box
       sx={{
-        backgroundColor: 'black',
-        paddingBottom: '10px'
+        backgroundColor: "black",
+        paddingBottom: "10px",
       }}
     >
       <Container>
-        <Stack spacing={2} alignItems={'center'}>
-          <Stack
-            direction={'row'}
-            spacing={1}
-            justifyContent={'space-evenly'}
-            sx={{ width: '100%' }}
-          >
-            <CreatedWith />
-            <Stack
-              direction={'row'}
-              spacing={8}
-              sx={{ display: { xs: 'none', md: 'flex' } }}
-            >
-              <div>
-                {pages.map(page => (
-                  <Stack key={'footer-' + page.name}>
-                    <Button
-                      size='small'
-                      // key={page.name}
-                      onClick={() => navigate(page.path)}
-                      sx={{
-                        fontSize: '1.5rem',
-                        '&:hover': { textDecoration: 'underline' }
-                      }}
-                    >
-                      {page.name}
-                    </Button>
-                    {page.subPages && (
-                      <Stack>
-                        <>
-                          {page.subPages.map(subPage => (
-                            <>
-                              <Button
-                                size='small'
-                                key={'footer-sub-' + subPage.name}
-                                onClick={() => navigate(subPage.path)}
-                                sx={{
-                                  fontSize: '1rem',
-                                  '&:hover': { textDecoration: 'underline' }
-                                }}
-                              >
-                                {subPage.name}
-                              </Button>
-                            </>
-                          ))}
-                        </>
-                      </Stack>
-                    )}
-                  </Stack>
-                ))}
-              </div>
-            </Stack>
-          </Stack>
+        <Stack spacing={2} alignItems={"center"}>
+          <FooterBody />
           <AppInfo />
         </Stack>
       </Container>
     </Box>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
