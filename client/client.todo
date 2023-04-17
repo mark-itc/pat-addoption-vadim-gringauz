@@ -1,9 +1,16 @@
 GENERAL
 ✔ 1.FIX key for map in Footer @done (2.4.2023, 15:15:58)
 
-COMPONENTS
+COMPONENTS (Pages)
 ☐ REBUILD style for pet card
-☐ dashboard
+☐ Dashboard
+☐ Profile settings
+☐ Search page
+☐ Add pet 
+☐ 
+
+UTILS
 
 
 README
+☐ ADD ITC instruction files
