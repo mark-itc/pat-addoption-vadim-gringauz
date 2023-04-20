@@ -9,12 +9,11 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import ErrorAlert from "./ErrorAlert";
 import useAuth from "../../hooks/useAuth";
+import useAlert from "../../hooks/useAlert";
 
 function SignInForm() {
-  const [openAlert, setOpenAlert] = useState(false);
-  const [message, setMessage] = useState("");
+  const { showAlert } = useAlert()
 
   const { signInUser } = useAuth();
 
@@ -31,8 +30,7 @@ function SignInForm() {
     //! USE CREDS TO SIGN-IN
     const { success, message } = await signInUser(credentials);
     if (!success) {
-      setOpenAlert(true);
-      setMessage(message);
+      showAlert(message)
     }
   };
 
@@ -94,11 +92,6 @@ function SignInForm() {
           </Grid>
         </Box>
       </Box>
-      <ErrorAlert
-        openAlert={openAlert}
-        setOpenAlert={setOpenAlert}
-        message={message}
-      />
     </Container>
   );
 }

@@ -6,6 +6,7 @@ import { Box } from '@mui/material'
 import GlobalTheme from './config/GlobalTheme'
 import Navbar from './components/navbar/Navbar'
 import Footer from './components/footer/Footer'
+import SnackbarAlert from './components/alerts/SnackbarAlert'
 import fonts from './config/fonts'
 import appLogo from './assets/logo.png'
 export { appLogo }
@@ -28,6 +29,7 @@ function App () {
         <Outlet />
         <Footer />
       </Box>
+      <SnackbarAlert />
     </GlobalTheme>
   )
 }
