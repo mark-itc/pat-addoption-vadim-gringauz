@@ -64,7 +64,7 @@ class PetAPI {
     }
   }
 
-  static async createPet (newPetData, accessToken) {
+  static async createPet (newPetData, accessToken, petID) {
     try {
       const response = await axiosPet.post(`/${petID}`, newPetData, {
         headers: {
