@@ -1,12 +1,9 @@
-## Final Project! Pet Adoption app - Frontend (v0.3.0)
-# Planning stage - 
+## Pet Adoption web-app (fullstack project) - FRONTEND Part
 
-Framework: React.js
 
-Styling: Styled Components + Material UI
-
-State management: Redux
+### Framework: React
+### Styling: Styled Components + Material UI
+### State management: Redux
 
 
 
-### :basketball: Vadim Gringauz :basketball:
