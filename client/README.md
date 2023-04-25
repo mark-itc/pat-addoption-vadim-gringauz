@@ -13,7 +13,3 @@ The goal of this platform is to allow users to sign up, search and reserve pets 
  * **CSS and styling**: MUI + Styled-Components
  * **State Management**: Redux
  * **Hosting**: ~~AWS S3~~ Render.com
-
-
-
-
