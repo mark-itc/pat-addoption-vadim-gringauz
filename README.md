@@ -8,8 +8,7 @@ The final project of the course: fullstack web-app for a pet adoption agency
 Were given only general guidelines for the client and the server
 Everything else had to do ourselves, including the design and milestones
 
-[FE Guidelines PDF file](./itc-guidelines/Frontend.pdf)
-
+[FE Guidelines PDF file](./itc-guidelines/Frontend.pdf)<br>
 [BE Guidelines PDF file](./itc-guidelines/Backend.pdf)
 
 
