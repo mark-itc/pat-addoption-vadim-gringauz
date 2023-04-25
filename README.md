@@ -1,4 +1,5 @@
-# Pet Adoption App (fullstack web-app with React.js & Node.js)
+# Pet Adoption App
+# (fullstack web-app with React.js & Node.js)
 
 ## :mega: Demo
 [WE🧡PETS - Deployed website demo <img src='./logo.png' width=30px />](https://wepets.onrender.com)
